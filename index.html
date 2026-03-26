@@ -15,38 +15,52 @@
     />
   </head>
   <body>
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Initiate Access</title>
-      </head>
-      <body>
-        <div class="start-screen">
-          <button class="scan-btn" id="startBtn">Initiate Identity Scan</button>
-        </div>
+    <div class="start-screen" id="startScreen">
+      <button class="scan-btn" id="startBtn">Initiate Identity Scan</button>
+    </div>
 
-        <div class="hud" id="hud">
-          <div class="hud-header">
-            <span>Access Verification</span>
-            <span class="status" id="statusText">Awaiting</span>
-          </div>
+    <div class="hud" id="hud">
+      <div class="hud-header">
+        <span>Access Verification</span>
+        <span class="status" id="statusText">Awaiting</span>
+      </div>
 
-          <div class="video-wrap">
-            <video id="video" autoplay playsinline muted></video>
-            <div class="scan-line"></div>
-            <div class="face-box"></div>
-          </div>
+      <div class="video-wrap">
+        <video id="video" autoplay playsinline muted></video>
+        <div class="scan-line"></div>
+        <div class="face-box"></div>
+      </div>
 
-          <div class="hud-footer">
-            SUBJECT: LIVE<br />
-            CAMERA: FRONT FEED<br />
-            MATCH CONFIDENCE: 97.3%
-          </div>
-        </div>
-        <script src="js/camera.js"></script>
-      </body>
-    </html>
+      <div class="hud-footer">
+        SUBJECT: LIVE<br />
+        CAMERA: FRONT FEED<br />
+        MATCH CONFIDENCE: 97.3%
+      </div>
+    </div>
+
+    <!-- Hidden at first -->
+
+    <div id="mainContent" style="display: none">
+      <h1>Welcome user</h1>
+      <p>
+        Find below access to research specimen, processes, and construction logs
+      </p>
+      <div class="nav-buttons">
+        <button onclick="location.href = 'Workbook/Week1Home.html'">
+          Week 1
+        </button>
+        <button onclick="location.href = 'Workbook/Week1Home.html'">
+          Week 2
+        </button>
+        <button onclick="location.href = 'Workbook/Week1Home.html'">
+          Week 3
+        </button>
+        <button onclick="location.href = 'Workbook/siteConstructionLog.html'">
+          Construction Log
+        </button>
+      </div>
+    </div>
+
+    <script src="js/camera.js"></script>
   </body>
 </html>
