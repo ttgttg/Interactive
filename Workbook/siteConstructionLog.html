@@ -19,23 +19,30 @@
         margin-top: 1rem;
       }
 
-      .gallery > * {
+      .gallery-item {
         flex: 1 1 250px;
         max-width: 500px;
-        aspect-ratio: 1;
-        overflow: hidden;
         cursor: help;
       }
 
-      .gallery img {
+      .gallery-item img {
         width: 100%;
-        height: 100%;
+        aspect-ratio: 1;
         object-fit: contain;
+        display: block;
         transition: transform 0.2s;
       }
 
-      .gallery img:hover {
+      .gallery-item img:hover {
         transform: scale(1.05);
+      }
+
+      .caption,
+      .gallery-item p,
+      figcaption {
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        text-align: center;
       }
       #lightbox {
         display: none;
@@ -92,11 +99,29 @@
     <h1>Site Construction Log</h1>
 
     <div class="intro">
+      <h2>System Access Terminal</h2>
       <p>
         This log documents the development of my website, from early ideas and
         layout planning to interface experiments, coding decisions, and final
         refinements.
       </p>
+    </div>
+    <div class="nav-buttons">
+      <button onclick="location.href = '../index.html'">
+        [ TAKE_ME_HOME ]
+      </button>
+      <button onclick="location.href = 'Week1Home.html'">
+        [ OPEN WEEK_01 ]
+      </button>
+      <button onclick="location.href = 'Week2Home.html'">
+        [ OPEN WEEK_02 ]
+      </button>
+      <button onclick="location.href = 'Week3Home.html'">
+        [ OPEN WEEK_03 ]
+      </button>
+      <button onclick="location.href = 'siteConstructionLog.html'">
+        [ CURRENT FILE ]
+      </button>
     </div>
 
     <div class="log-entry">
@@ -157,7 +182,7 @@
         </div>
         <div class="gallery-item">
           <img
-            src="img\codeWIP2.png"
+            src="img/codeWIP2.png"
             alt="Adding alert dialog & entry into main webpage content"
           />
           <div class="caption">
@@ -165,7 +190,7 @@
           </div>
         </div>
         <div class="gallery-item">
-          <img src="img\cameratest.png" alt="Early test version" />
+          <img src="img/cameratest.png" alt="Early test version" />
           <div class="caption">Early test version</div>
         </div>
         <div class="gallery-item">

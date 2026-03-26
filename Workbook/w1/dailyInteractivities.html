@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Interactivities</title>
+    <style>
+  body {
+    margin: 0;
+    font-family: "Lucida Console", "Courier New", monospace;
+    background: #e9edf1;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 160px 1fr 160px;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .side-panel,
+  .notepad {
+    background: #f4f4f4;
+    border: 2px solid #777;
+    box-shadow: 3px 3px 0 #b5b5b5;
+  }
+
+  .side-panel {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .side-panel h3 {
+    margin-top: 0;
+    font-size: 14px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 6px;
+  }
+
+  .side-panel a {
+    display: block;
+    margin: 8px 0;
+    color: #222;
+    text-decoration: none;
+  }
+
+  .side-panel a:hover {
+    text-decoration: underline;
+  }
+
+  .notepad {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .notepad h2 {
+    margin-top: 0;
+    font-size: 18px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 8px;
+  }
+
+  .entry {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+
+  .entry img {
+    width: 180px;
+    border: 1px solid #555;
+    display: block;
+  }
+
+  .entry-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .entry-text h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+  }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+    }
+
+    .notepad {
+      max-width: 100%;
+    }
+
+    .entry {
+      flex-direction: column;
+    }
+
+    .entry img {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+</style>
+</head>
+<body>
+    <div class="page">
+  <div class="side-panel">
+    <h3>Links</h3>
+    <a href="#">Week 1</a>
+    <a href="#">Week 2</a>
+    <a href="#">Construction Log</a>
+  </div>
+
+  <div class="notepad">
+    <h2>3x Examples of Noteworthy Interactivity</h2>
+
+    <div class="entry">
+      <img src="images/crossroad.gif" alt="Crossroad image">
+      <div class="entry-text">
+        <h4>1. The Crossroad</h4>
+        <p>
+          I think that the crossroad, the kind where it's a full urban junction during peak hour, is one of the densest examples of overlapping interactivity I can think of that has nothing to do with a screen.
+        </p>
+        
+      </div>
+    </div>
+
+    <div class="entry">
+      <img src="images/cooking.gif" alt="Cooking image">
+      <div class="entry-text">
+        <h4>2. Cooking</h4>
+      </div>
+    </div>
+
+    <div class="entry">
+      <img src="images/snorkeling.gif" alt="Snorkeling image">
+      <div class="entry-text">
+        <h4>3. Snorkeling</h4>
+        <p>
+          Underwater, feedback feels delayed and displaced. Water becomes both medium and interface,
+          requiring the body to recalibrate its movements and expectations.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

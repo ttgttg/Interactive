@@ -1,11 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>welcome to week 1</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: "Lucida Console", "Courier New", monospace;
+        background: radial-gradient(circle at top, #1b2735, #090a0f 70%);
+        color: white;
+        height: 100vh;
+        position: relative;
+      }
+
+      .stars {
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(white 1px, transparent 1px),
+          radial-gradient(white 1px, transparent 1px),
+          radial-gradient(white 1px, transparent 1px);
+        background-size:
+          120px 120px,
+          180px 180px,
+          240px 240px;
+        background-position:
+          20px 30px,
+          60px 80px,
+          100px 40px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 28px;
+        letter-spacing: 2px;
+        z-index: 2;
+        position: relative;
+      }
+
+      .portal {
+        position: absolute;
+        padding: 14px 20px;
+        background: rgba(25, 25, 40, 0.9);
+        border: 1px solid white;
+        color: white;
+        text-decoration: none;
+        cursor: grab;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .portal:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 18px rgba(122, 162, 255, 0.6);
+      }
+
+      .portal:active {
+        cursor: grabbing;
+      }
+      #shooting-stars {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .shooting-star {
+        position: absolute;
+        color: rgb(245, 245, 171);
+        font-size: 1.2em;
+        letter-spacing: -2px;
+        text-shadow: 2px 2px 12px rgb(255, 255, 255);
+        opacity: 0.9;
+        white-space: pre;
+      }
+
+      #star1 {
+        top: 0;
+        right: 10vw;
+        animation: shootingStar 3.3s linear infinite;
+      }
+
+      #star2 {
+        top: 4vh;
+        right: 50vw;
+        animation: shootingStar 2.7s linear infinite;
+      }
+
+      #star3 {
+        top: -10vh;
+        right: 60vw;
+        animation: shootingStar 4.2s linear infinite;
+        animation-delay: 1.2s;
+      }
+
+      #star4 {
+        top: -20vh;
+        right: 90vw;
+        animation: shootingStar 4.3s linear infinite;
+        animation-delay: 2s;
+      }
+
+      #star5 {
+        top: -30vh;
+        right: 30vw;
+        animation: shootingStar 3s linear infinite;
+      }
+
+      #star6 {
+        top: 8vh;
+        right: -10vw;
+        animation: shootingStar 3s linear infinite;
+        animation-delay: 1.2s;
+      }
+
+      #star7 {
+        top: 2vh;
+        right: -20vw;
+        animation: shootingStar 2s linear infinite;
+        animation-delay: 2.2s;
+      }
+
+      @keyframes shootingStar {
+        0% {
+          transform: rotate(-35deg) translateX(0) translateY(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.9;
+        }
+        100% {
+          transform: rotate(-35deg) translateX(-120vw) translateY(45vh);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div id="shooting-stars">
+      <div class="shooting-star" id="star1"><pre>*-.</pre></div>
+      <div class="shooting-star" id="star2"><pre>*-.</pre></div>
+      <div class="shooting-star" id="star3"><pre>*-.</pre></div>
+      <div class="shooting-star" id="star4"><pre>*-.</pre></div>
+      <div class="shooting-star" id="star5"><pre>*-.</pre></div>
+      <div class="shooting-star" id="star6"><pre>*-.</pre></div>
+      <div class="shooting-star" id="star7"><pre>*-.</pre></div>
+    </div>
+    <h1>WEEK 1 HOME</h1>
+
+    <a
+      href="w1/dailyInteractivities.html"
+      class="portal"
+      style="top: 140px; left: 120px"
+      >Daily Interactivities</a
+    >
+    <a
+      href="siteConstructionLog.html"
+      class="portal"
+      style="top: 250px; left: 320px"
+      >Construction Log</a
+    >
+    <a href="w1/reflection.html" class="portal" style="top: 180px; left: 600px"
+      >Reflection</a
+    >
+    <a href="w1/experiment1.html" class="portal" style="top: 340px; left: 520px"
+      >Experiment 1</a
+    >
+
+    <script>
+      const portals = document.querySelectorAll(".portal");
+
+      portals.forEach((portal) => {
+        let isDragging = false;
+        let hasMoved = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        portal.addEventListener("mousedown", (e) => {
+          isDragging = true;
+          hasMoved = false;
+
+          offsetX = e.clientX - portal.offsetLeft;
+          offsetY = e.clientY - portal.offsetTop;
+
+          portal.style.zIndex = 1000;
+
+          e.preventDefault();
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          if (!isDragging) return;
+
+          hasMoved = true;
+
+          portal.style.left = e.clientX - offsetX + "px";
+          portal.style.top = e.clientY - offsetY + "px";
+        });
+
+        document.addEventListener("mouseup", () => {
+          isDragging = false;
+        });
+
+        portal.addEventListener("click", (e) => {
+          if (hasMoved) {
+            e.preventDefault();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
