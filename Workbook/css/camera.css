@@ -1,0 +1,135 @@
+:root {
+  --bg-color: #0b0f14;
+  --accent-color: #71f562;
+  --button-bg-color: rgb(85, 0, 255);
+}
+
+body {
+  margin: 0;
+  font-family: "Special Elite", system-ui;
+  background: var(--bg-color);
+  color: var(--accent-color);
+  overflow: hidden;
+}
+
+.start-screen {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.scan-btn {
+  padding: 16px 28px;
+  font-family: "Special Elite";
+  border: 1px solid var(--accent-color);
+  background: var(--button-bg-color);
+  color: var(--accent-color);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(98, 245, 213, 0.12);
+}
+
+.hud {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 320px;
+  padding: 12px;
+  border: 1px solid rgba(98, 245, 213, 0.5);
+  background: rgb(85, 0, 255);
+  backdrop-filter: blur(6px);
+  display: none;
+}
+
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  text-transform: uppercase;
+}
+
+.video-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid rgba(143, 255, 233, 0.35);
+  background: #000;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.15) saturate(0) brightness(0.95);
+  transform: scaleX(-1);
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  box-shadow: 0 0 12px var(--accent-color);
+  animation: scan 2.4s linear infinite;
+}
+
+.face-box {
+  position: absolute;
+  top: 23%;
+  left: 27%;
+  width: 46%;
+  height: 42%;
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 12px rgba(98, 245, 213, 0.35);
+  pointer-events: none;
+}
+
+.face-box::before,
+.face-box::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--accent-color);
+}
+
+.face-box::before {
+  top: -2px;
+  left: -2px;
+  border-top: 3px solid var(--accent-color);
+  border-left: 3px solid var(--accent-color);
+}
+
+.face-box::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 3px solid var(--accent-color);
+  border-right: 3px solid var(--accent-color);
+}
+
+.hud-footer {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--accent-color);
+}
+
+.status {
+  color: var(--accent-color);
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}

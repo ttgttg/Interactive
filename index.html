@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alice's Workbook</title>
+    <link rel="stylesheet" href="Workbook/css/reset.css" />
+    <link rel="stylesheet" href="Workbook/css/imageGalleryBuilder.css" />
+    <link rel="stylesheet" href="Workbook/css/camera.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Initiate Access</title>
+      </head>
+      <body>
+        <div class="start-screen">
+          <button class="scan-btn" id="startBtn">Initiate Identity Scan</button>
+        </div>
+
+        <div class="hud" id="hud">
+          <div class="hud-header">
+            <span>Access Verification</span>
+            <span class="status" id="statusText">Awaiting</span>
+          </div>
+
+          <div class="video-wrap">
+            <video id="video" autoplay playsinline muted></video>
+            <div class="scan-line"></div>
+            <div class="face-box"></div>
+          </div>
+
+          <div class="hud-footer">
+            SUBJECT: LIVE<br />
+            CAMERA: FRONT FEED<br />
+            MATCH CONFIDENCE: 97.3%
+          </div>
+        </div>
+        <script src="js/camera.js"></script>
+      </body>
+    </html>
+  </body>
+</html>

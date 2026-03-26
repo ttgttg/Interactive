@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site_Construction_log</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* CSS from https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/CHEATSHEETS/gallery_builder.html */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .gallery > * {
+        flex: 1 1 250px;
+        max-width: 500px;
+        aspect-ratio: 1;
+        overflow: hidden;
+        cursor: help;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.2s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      #lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border: 3px solid white;
+      }
+
+      body {
+        font-family: "Special Elite", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        margin: 0;
+        padding: 2rem;
+        color: #d8d763;
+        background-color: black;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      .intro {
+        max-width: 800px;
+        margin-bottom: 2rem;
+      }
+
+      .log-entry {
+        background: rgba(25, 25, 25, 0.628);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .log-entry p {
+        margin: 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Site Construction Log</h1>
+
+    <div class="intro">
+      <p>
+        This log documents the development of my website, from early ideas and
+        layout planning to interface experiments, coding decisions, and final
+        refinements.
+      </p>
+    </div>
+
+    <div class="log-entry">
+      <h2>Stage 1 Initial Concept</h2>
+      <p><strong>Date:</strong> 10 March 2026</p>
+      <p>
+        I began by defining the purpose of the website and identifying the
+        visual style I wanted. My aim was to create an interactive experience
+        with a strong visual identity and a clear user flow.
+      </p>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="images/concept-sketch.jpg" alt="Initial concept sketch" />
+          <div class="caption">Initial concept sketch</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/moodboard.jpg" alt="Moodboard and references" />
+          <div class="caption">Moodboard and references</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <h2>Stage 2 Layout and Structure</h2>
+      <p><strong>Date:</strong> 14 March 2026</p>
+      <p>
+        I planned the structure of the website and experimented with layout
+        options. At this stage, I focused on navigation, spacing, and how
+        content would be presented across different sections.
+      </p>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="images/wireframe-home.jpg" alt="Homepage wireframe" />
+          <div class="caption">Homepage wireframe</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/wireframe-detail.jpg" alt="Detail page wireframe" />
+          <div class="caption">Detail page wireframe</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <h2>Stage 3 Development and Testing</h2>
+      <p><strong>Date:</strong> 20 March 2026</p>
+      <p>
+        I started coding the website in HTML, CSS, and JavaScript. I tested
+        interactive features, adjusted styling, and refined the interface to
+        better match the intended experience.
+      </p>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img\codeWIP.png" alt="Coding progress screenshot" />
+          <div class="caption">Coding progress screenshot</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img\cameratest.png" alt="Early test version" />
+          <div class="caption">Early test version</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/final-refinement.jpg" alt="Refined final version" />
+          <div class="caption">Refined final version</div>
+        </div>
+      </div>
+    </div>
+    <div id="lightbox" onclick="this.style.display = 'none'">
+      <img id="lightbox-img" src="" />
+    </div>
+    <script>
+      // Lightbox
+      const items = document.querySelectorAll(".gallery img");
+
+      items.forEach((img) => {
+        img.onclick = () => {
+          document.getElementById("lightbox-img").src = img.src;
+          document.getElementById("lightbox").style.display = "flex";
+        };
+      });
+    </script>
+  </body>
+</html>
