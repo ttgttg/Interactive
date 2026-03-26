@@ -1,153 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Interactivities</title>
     <style>
-  body {
-    margin: 0;
-    font-family: "Lucida Console", "Courier New", monospace;
-    background: #e9edf1;
-  }
+      * {
+        cursor: url("../img/pyrrhic-tales-prelude-to/1.cur"), auto;
+      }
+      body {
+        margin: 0;
+        font-family: "Lucida Console", "Courier New", monospace;
+        background: #e9edf1;
+      }
 
-  .page {
-    max-width: 1200px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: 160px 1fr 160px;
-    gap: 20px;
-    align-items: start;
-  }
+      .page {
+        max-width: 1200px;
+        margin: 40px auto;
+        display: grid;
+        grid-template-columns: 160px 1fr 160px;
+        gap: 20px;
+        align-items: start;
+      }
 
-  .side-panel,
-  .notepad {
-    background: #f4f4f4;
-    border: 2px solid #777;
-    box-shadow: 3px 3px 0 #b5b5b5;
-  }
+      .side-panel,
+      .notepad {
+        background: #f4f4f4;
+        border: 2px solid #777;
+        box-shadow: 3px 3px 0 #b5b5b5;
+      }
 
-  .side-panel {
-    padding: 12px;
-    font-size: 13px;
-  }
+      .side-panel {
+        padding: 12px;
+        font-size: 13px;
+      }
 
-  .side-panel h3 {
-    margin-top: 0;
-    font-size: 14px;
-    border-bottom: 1px solid #999;
-    padding-bottom: 6px;
-  }
+      .side-panel h3 {
+        margin-top: 0;
+        font-size: 14px;
+        border-bottom: 1px solid #999;
+        padding-bottom: 6px;
+      }
 
-  .side-panel a {
-    display: block;
-    margin: 8px 0;
-    color: #222;
-    text-decoration: none;
-  }
+      .side-panel a {
+        display: block;
+        margin: 8px 0;
+        color: #222;
+        text-decoration: none;
+      }
 
-  .side-panel a:hover {
-    text-decoration: underline;
-  }
+      .side-panel a:hover {
+        text-decoration: underline;
+      }
 
-  .notepad {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 16px;
-  }
+      .notepad {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 16px;
+      }
 
-  .notepad h2 {
-    margin-top: 0;
-    font-size: 18px;
-    border-bottom: 1px solid #999;
-    padding-bottom: 8px;
-  }
+      .notepad h2 {
+        margin-top: 0;
+        font-size: 18px;
+        border-bottom: 1px solid #999;
+        padding-bottom: 8px;
+      }
 
-  .entry {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-    align-items: flex-start;
-  }
+      .entry {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+        align-items: flex-start;
+      }
 
-  .entry img {
-    width: 180px;
-    border: 1px solid #555;
-    display: block;
-  }
+      .entry img {
+        width: 180px;
+        border: 1px solid #555;
+        display: block;
+      }
 
-  .entry-text {
-    flex: 1;
-    font-size: 14px;
-    line-height: 1.6;
-  }
+      .entry-text {
+        flex: 1;
+        font-size: 14px;
+        line-height: 1.6;
+      }
 
-  .entry-text h4 {
-    margin: 0 0 8px 0;
-    font-size: 15px;
-  }
+      .entry-text h4 {
+        margin: 0 0 8px 0;
+        font-size: 15px;
+      }
 
-  @media (max-width: 900px) {
-    .page {
-      grid-template-columns: 1fr;
-    }
+      @media (max-width: 900px) {
+        .page {
+          grid-template-columns: 1fr;
+        }
 
-    .notepad {
-      max-width: 100%;
-    }
+        .notepad {
+          max-width: 100%;
+        }
 
-    .entry {
-      flex-direction: column;
-    }
+        .entry {
+          flex-direction: column;
+        }
 
-    .entry img {
-      width: 100%;
-      max-width: 250px;
-    }
-  }
-</style>
-</head>
-<body>
+        .entry img {
+          width: 100%;
+          max-width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="page">
-  <div class="side-panel">
-    <h3>Links</h3>
-    <a href="#">Week 1</a>
-    <a href="#">Week 2</a>
-    <a href="#">Construction Log</a>
-  </div>
+      <div class="side-panel">
+        <h3>Links</h3>
+        <a href="../Week1Home.html">WEEK_1</a>
+        <a href="../Week2Home.html">WEEK_2</a>
+        <a href="../Week3Home.html">WEEK_3</a>
+        <a href="../siteConstructionLog.html">Site Construction_Log</a>
+      </div>
 
-  <div class="notepad">
-    <h2>3x Examples of Noteworthy Interactivity</h2>
+      <div class="notepad">
+        <h2>3x Examples of Noteworthy Interactivity</h2>
 
-    <div class="entry">
-      <img src="images/crossroad.gif" alt="Crossroad image">
-      <div class="entry-text">
-        <h4>1. The Crossroad</h4>
-        <p>
-          I think that the crossroad, the kind where it's a full urban junction during peak hour, is one of the densest examples of overlapping interactivity I can think of that has nothing to do with a screen.
-        </p>
-        
+        <div class="entry">
+          <img
+            src="https://media.tenor.com/OkGwinaCWOsAAAAM/traffic-intersection.gif"
+            alt="Crossroad image"
+          />
+          <div class="entry-text">
+            <h4>1. The Crossroad</h4>
+            <p>
+              I think that the crossroad, the kind where it's a full urban
+              junction during peak hour, is one of the densest examples of
+              overlapping interactivity I can think of that has nothing to do
+              with a screen.
+            </p>
+            <p>
+              What I found noteworthy was how many interfaces are active at
+              once, nested inside each other. For one, the driver is inside a
+              car, which is itself a mechanical system they are operating
+              through pedals, a wheel, a gearstick, and many other buttons.
+            </p>
+            <p>
+              But simultaneously, that same driver is in dialogue with the
+              traffic light, and they are reading and being read by every other
+              driver, cyclist, pedestrian in the space. It's an extraordinarily
+              complex point of interactivity and almost entirely unspoken, only
+              conveyed through micro-interactions like signals.
+            </p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <img
+            src="https://media.tenor.com/FlczrRGt3JkAAAAM/chicken-microwave.gif"
+            alt="Cooking image"
+          />
+          <div class="entry-text">
+            <h4>2. Cooking</h4>
+            <p>
+              In the kitchen I realised I've been interacting with a myriad of
+              interfaces. What interests me is how much of this is unconscious
+              until I really thought hard about points of interactivity. Yet
+              operating all of these systems required learning at some point -
+              There was a version of younger me that didn't know intuitively
+              that a knob rotates, that a handle pulls, that a button depresses
+              and clicks.
+            </p>
+            <p>
+              I think about how these affordances shape mental models overtime -
+              the instincts I built through failure and repetition until the
+              interface stopped being visible and became just the thing I do to
+              make something happen.
+            </p>
+            <p>
+              If I were to be presented with a button, I would have muscle
+              memory and assumptions of how to interact with it, compared to
+              something like a rock.
+            </p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <img
+            src="https://media.tenor.com/KzKpiE1iG-sAAAAM/dive-pals-scuba.gif"
+            alt="Snorkeling image"
+          />
+          <div class="entry-text">
+            <h4>3. Snorkeling</h4>
+            <p>
+              This one is slightly weird, I thought about water as an interface,
+              one with unclear but infinite affordances (since it's a liquid?).
+              But when I'm swimming, does water become the interface and the
+              medium at the same time, since I'm moving through it? or does my
+              body become the interface? It's all a bit blurred.
+            </p>
+            <p>
+              Also I like the idea that underwater, the usual feedback loops
+              between intention and outcome are all slightly delayed or slightly
+              displaced. It's like you need to recalibrate your body like a
+              device.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="entry">
-      <img src="images/cooking.gif" alt="Cooking image">
-      <div class="entry-text">
-        <h4>2. Cooking</h4>
-      </div>
-    </div>
-
-    <div class="entry">
-      <img src="images/snorkeling.gif" alt="Snorkeling image">
-      <div class="entry-text">
-        <h4>3. Snorkeling</h4>
-        <p>
-          Underwater, feedback feels delayed and displaced. Water becomes both medium and interface,
-          requiring the body to recalibrate its movements and expectations.
-        </p>
-      </div>
-    </div>
-  </div>
-
-</body>
+  </body>
 </html>
