@@ -6,6 +6,20 @@ const video = document.getElementById("video");
 const statusText = document.getElementById("statusText");
 const mainContent = document.getElementById("mainContent");
 const startScreen = document.getElementById("startScreen");
+const music = document.getElementById("bg-music");
+
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+  const startBtn = document.getElementById("startBtn");
+
+  startBtn.addEventListener("click", () => {
+    music.volume = 0.3;
+    music
+      .play()
+      .then(() => console.log("Music playing"))
+      .catch((err) => console.log(err));
+  });
+});
 
 let currentStream = null;
 
