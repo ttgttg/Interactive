@@ -41,6 +41,7 @@ body {
   background: rgb(85, 0, 255);
   backdrop-filter: blur(6px);
   display: none;
+  z-index: 20;
 }
 
 .hud-header {

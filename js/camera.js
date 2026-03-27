@@ -7,6 +7,7 @@ const statusText = document.getElementById("statusText");
 const mainContent = document.getElementById("mainContent");
 const startScreen = document.getElementById("startScreen");
 const music = document.getElementById("bg-music");
+const bgGlitch = document.getElementById("bgGlitch");
 
 window.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bg-music");
@@ -20,6 +21,34 @@ window.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.log(err));
   });
 });
+
+function startSubtleGlitch() {
+  if (bgGlitch) {
+    bgGlitch.classList.add("active");
+    bgGlitch.classList.remove("heavy");
+  }
+}
+
+function startHeavyGlitch() {
+  if (bgGlitch) {
+    bgGlitch.classList.add("active", "heavy");
+  }
+}
+
+function stopGlitch() {
+  if (bgGlitch) {
+    bgGlitch.classList.remove("active", "heavy");
+  }
+}
+
+setInterval(() => {
+  if (!bgGlitch || startBtn.style.display === "none") return;
+
+  bgGlitch.classList.add("active");
+  setTimeout(() => {
+    bgGlitch.classList.remove("active", "heavy");
+  }, 120);
+}, 2500);
 
 let currentStream = null;
 
@@ -36,6 +65,7 @@ function stopCamera() {
 startBtn.addEventListener("click", async () => {
   try {
     statusText.textContent = "Requesting";
+    startSubtleGlitch();
 
     const stream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: "user" },
@@ -48,6 +78,7 @@ startBtn.addEventListener("click", async () => {
     startBtn.style.display = "none";
 
     statusText.textContent = "Scanning";
+    startHeavyGlitch();
 
     setTimeout(() => {
       statusText.textContent = "Verified";
@@ -58,6 +89,7 @@ startBtn.addEventListener("click", async () => {
         );
 
         stopCamera();
+        stopGlitch();
 
         if (startScreen) {
           startScreen.style.display = "none";

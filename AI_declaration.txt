@@ -1,11 +1,9 @@
 Declaration
+
 Acknowledgement of tools used: 
-I acknowledge the use of Claude [https://claude.ai] to generate:
-- 
+I acknowledge the use of Claude [https://claude.ai] to help me debug my code and provide recommendations on coding best practices for contructing dynamic webpages.
 
 How the tool was used:
-- I debugged my code 
+I used it to analyse sections of my code and to identify potential mistakes and errors. I examined the outputs carefully to ensure I understand what it's doing in order to revise syntax errors.
 
-
-Records Available: 
 A full record of prompts and outputs is available upon request.
