@@ -1,0 +1,11 @@
+Declaration
+Acknowledgement of tools used: 
+I acknowledge the use of Claude [https://claude.ai] to generate:
+- 
+
+How the tool was used:
+- I debugged my code 
+
+
+Records Available: 
+A full record of prompts and outputs is available upon request.
