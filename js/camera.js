@@ -19,9 +19,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (startScreen) startScreen.style.display = "none";
     if (mainContent) mainContent.style.display = "block";
     document.body.style.overflow = "auto";
-
-    startSubtleGlitch();
-    setTimeout(stopGlitch, 500);
   }
 
   startBtn.addEventListener("click", () => {
