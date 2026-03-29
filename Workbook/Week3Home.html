@@ -1,11 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>welcome to week 3</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 3 Home</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "VT323", monospace;
+        background: url("https://i.redd.it/xm05s2iqszh01.jpg") center center /
+          cover no-repeat;
+        color: #62f5d5;
+        overflow: hidden;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+      }
+
+      .glow-panel {
+        position: relative;
+        z-index: 1;
+        width: min(700px, 88vw);
+        margin: 10vh auto;
+        padding: 28px;
+        background: rgba(50, 0, 145, 0.88);
+        border: 1px solid rgba(98, 245, 213, 0.5);
+        box-shadow: 0 0 25px rgba(98, 245, 213, 0.12);
+      }
+
+      .panel-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        letter-spacing: 1px;
+      }
+
+      .panel-top .left,
+      .panel-top .right {
+        font-size: 2rem;
+      }
+
+      h1 {
+        margin: 0 0 10px 0;
+        font-size: 4rem;
+        line-height: 0.95;
+        letter-spacing: 2px;
+      }
+
+      .subtext {
+        margin: 0 0 28px 0;
+        font-size: 1.8rem;
+        color: #8fffe9;
+        opacity: 0.95;
+      }
+
+      .button-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .nav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 92px;
+        text-decoration: none;
+        color: #62f5d5;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #62f5d5;
+        font-size: 2rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .nav-btn:hover {
+        background: rgba(98, 245, 213, 0.08);
+        box-shadow: 0 0 14px rgba(98, 245, 213, 0.28);
+        transform: translateY(-2px);
+      }
+
+      .footer-note {
+        margin-top: 24px;
+        font-size: 1.5rem;
+        color: #8fffe9;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 700px) {
+        .button-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+
+        .panel-top .left,
+        .panel-top .right,
+        .subtext,
+        .nav-btn {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="glow-panel">
+      <div class="panel-top">
+        <div class="left">WEEK 3 DIRECTORY</div>
+        <div class="right">ACTIVE</div>
+      </div>
+
+      <h1>WEEK 3 HOME</h1>
+      <p class="subtext">
+        Access research specimens, logs, and interaction records.
+      </p>
+
+      <div class="button-grid">
+        <a class="nav-btn" href="../index.html">Go back</a>
+        <a class="nav-btn" href="Week3Home.html">Entry 01</a>
+        <a class="nav-btn" href="week3-entry2.html">Entry 02</a>
+        <a class="nav-btn" href="week3-entry3.html">Entry 03</a>
+        <a class="nav-btn" href="week3-log.html">Construction Log</a>
+      </div>
+
+      <div class="footer-note">
+        Status: archived materials available for viewing
+      </div>
+    </main>
+  </body>
 </html>
