@@ -12,6 +12,17 @@ const bgGlitch = document.getElementById("bgGlitch");
 window.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bg-music");
   const startBtn = document.getElementById("startBtn");
+  const isVerified = localStorage.getItem("verified");
+
+  if (isVerified === "true") {
+    // skip scan completely if verified already
+    if (startScreen) startScreen.style.display = "none";
+    if (mainContent) mainContent.style.display = "block";
+    document.body.style.overflow = "auto";
+
+    startSubtleGlitch();
+    setTimeout(stopGlitch, 500);
+  }
 
   startBtn.addEventListener("click", () => {
     music.volume = 0.3;
@@ -90,6 +101,8 @@ startBtn.addEventListener("click", async () => {
 
         stopCamera();
         stopGlitch();
+
+        localStorage.setItem("verified", "true");
 
         if (startScreen) {
           startScreen.style.display = "none";
