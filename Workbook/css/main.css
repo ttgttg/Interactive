@@ -1,0 +1,18 @@
+#mainContent {
+  cursor: url("../img/pyrrhic-tales-prelude-to/1.cur"), auto;
+  height: 100vh;
+  padding-left: 36rem;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-image: url(https://eip.gg/wp-content/uploads/2024/03/Alone-in-the-Dark-X-Ray-Puzzle-Step-3.jpg);
+}
+
+#mainContent h1 {
+  margin-top: 10rem;
+}
+
+.nav-buttons button {
+  cursor: pointer;
+  background-color: crimson;
+}

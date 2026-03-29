@@ -1,9 +1,13 @@
-Declaration
-
 Acknowledgement of tools used: 
-I acknowledge the use of Claude [https://claude.ai] to help me debug my code and provide recommendations on coding best practices for contructing dynamic webpages.
+I acknowledge the use of Claude [https://claude.ai] and ChatGPT [https://chatgpt.com] to help me debug my code and provide recommendations on coding best practices for constructing dynamic webpages. I acknowledge the use of Google Stitch [https://stitch.withgoogle.com/] for informal UI exploration.
 
-How the tool was used:
-I used it to analyse sections of my code and to identify potential mistakes and errors. I examined the outputs carefully to ensure I understand what it's doing in order to revise syntax errors.
+How the tools were used:
+Claude & ChatGPT
+Used it to analyse sections of my code and to identify potential mistakes and errors. 
+I examined the outputs carefully to ensure I understand what it's doing in order to revise syntax errors. 
+Asked it to explain any code snippets from inspiration websites to inform my own practice.
+
+Stitch with Google
+Used it to test out generative capabilities and experiment with prompt engineering.
 
 A full record of prompts and outputs is available upon request.

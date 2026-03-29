@@ -48,7 +48,7 @@ setInterval(() => {
   setTimeout(() => {
     bgGlitch.classList.remove("active", "heavy");
   }, 120);
-}, 2500);
+}, 1800);
 
 let currentStream = null;
 
