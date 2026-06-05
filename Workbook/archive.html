@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive Week 1-3</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/mainArchive.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="mainContent">
+      <h1>DRAG US</h1>
+      <p>
+        Find below access to research specimen, processes, and construction logs
+      </p>
+      <div class="nav-buttons">
+        <a href="Week1Home.html" class="nav-item">
+          <img
+            src="https://media.tenor.com/FlczrRGt3JkAAAAM/chicken-microwave.gif"
+            alt="WWWEEKLY_EXPERIMENT"
+          />
+          <button onclick="location.href = 'Week1Home.html'">
+            [ WWWEEK__01 ]
+          </button>
+        </a>
+        <a href="Week2Home.html" class="nav-item">
+          <img src="img/egg.png" alt="Hunter-gatherer" />
+          <button onclick="location.href = 'Week2Home.html'">
+            [ WWWEEK__02 ]
+          </button>
+        </a>
+        <a href="Week3Home.html" class="nav-item">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/054/785/835/small/close-up-of-brown-chicken-egg-isolated-on-transparent-background-png.png"
+            alt="archive (week 1-3)"
+          />
+          <button onclick="location.href = 'Week3Home.html'">
+            [ WWWEEK__03 ]
+          </button>
+        </a>
+      </div>
+      <button class="nav-item" onclick="location.href = '../index.html'">[ BACK_TO_HOME ]</button>
+    </div>
+  </body>
+  <script>
+    document.querySelectorAll(".nav-item").forEach((el) => {
+      let isDragging = false;
+      let startX, startY, origLeft, origTop;
+
+      el.addEventListener("mousedown", (e) => {
+        startX = e.clientX;
+        startY = e.clientY;
+        origLeft = el.offsetLeft;
+        origTop = el.offsetTop;
+        isDragging = false;
+
+        e.preventDefault(); // prevents text selection while dragging
+
+        const onMove = (e) => {
+          const dx = e.clientX - startX;
+          const dy = e.clientY - startY;
+          if (Math.abs(dx) > 3 || Math.abs(dy) > 3) isDragging = true;
+          el.style.left = origLeft + dx + "px";
+          el.style.top = origTop + dy + "px";
+        };
+
+        const onUp = () => {
+          document.removeEventListener("mousemove", onMove);
+          document.removeEventListener("mouseup", onUp);
+          // isDragging resets after click handler fires
+          setTimeout(() => {
+            isDragging = false;
+          }, 0);
+        };
+
+        document.addEventListener("mousemove", onMove);
+        document.addEventListener("mouseup", onUp);
+      });
+
+      el.addEventListener("click", (e) => {
+        if (isDragging) e.preventDefault();
+      });
+    });
+  </script>
+</html>

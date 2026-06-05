@@ -7,7 +7,4 @@ Used it to analyse sections of my code and to identify potential mistakes and er
 I examined the outputs carefully to ensure I understand what it's doing in order to revise syntax errors. 
 Asked it to explain any code snippets from inspiration websites to inform my own practice.
 
-Stitch with Google
-Used it to test out generative capabilities and experiment with prompt engineering.
-
 A full record of prompts and outputs is available upon request.

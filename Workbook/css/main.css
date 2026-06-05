@@ -1,18 +1,63 @@
+* {
+  cursor: url("../img/pyrrhic-tales-prelude-to/1.cur"), auto !important;
+}
+
 #mainContent {
   cursor: url("../img/pyrrhic-tales-prelude-to/1.cur"), auto;
   height: 100vh;
-  padding-left: 36rem;
   overflow: hidden;
   background-size: cover;
   background-position: center;
   background-image: url(https://eip.gg/wp-content/uploads/2024/03/Alone-in-the-Dark-X-Ray-Puzzle-Step-3.jpg);
+  position: relative;
 }
 
 #mainContent h1 {
-  margin-top: 10rem;
+  position: absolute;
+  top: 2rem;
+  left: 30rem;
 }
 
-.nav-buttons button {
-  cursor: pointer;
-  background-color: crimson;
+#mainContent p {
+  position: absolute;
+  top: 3rem;
+  left: 34rem;
 }
+
+.nav-buttons {
+  position: absolute;
+  inset: 0;
+}
+
+.nav-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+
+.nav-item img {
+  width: 160px;
+  height: 120px;
+  object-fit: contain;
+  filter: brightness(0.7) saturate(2) drop-shadow(4px 4px 10px   rgb(0, 0, 0));
+}
+
+.nav-item button {
+  cursor: pointer;
+  background-color: rgb(170, 0, 0);
+  font-family: "Special Elite";
+  color: #71f562;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* position each item on the shelves — tweak top/left to taste */
+.nav-item:nth-child(1) { top: 15%; left: 42%; } /* WWWEEK_01 — top shelf left */
+.nav-item:nth-child(2) { top: 15%; left: 57%; } /* WWWEEK_02 — top shelf right */
+.nav-item:nth-child(3) { top: 59%; left: 60%; } /* WWWEEK_03 — middle shelf */
+.nav-item:nth-child(4) { top: 35%; left: 70%; } /* CONSTRUCTION_LOG — middle shelf */

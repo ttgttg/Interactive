@@ -5,91 +5,420 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Site_Construction_log</title>
     <style>
-      /* CSS from https://karenanndonnachie.github.io/VCA_INTERACTIVEMEDIA/CHEATSHEETS/gallery_builder.html */
-      .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      .gallery-item {
-        flex: 1 1 250px;
-        max-width: 500px;
-        cursor: help;
-      }
-
-      .gallery-item img {
-        width: 100%;
-        aspect-ratio: 1;
-        object-fit: contain;
-        display: block;
-        transition: transform 0.2s;
-      }
-
-      .gallery-item img:hover {
-        transform: scale(1.05);
-      }
-
-      .caption,
-      .gallery-item p,
-      figcaption {
-        margin-top: 0.5rem;
-        font-size: 0.95rem;
-        text-align: center;
-      }
-      #lightbox {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000000;
-        z-index: 999;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #lightbox img {
-        max-width: 90%;
-        max-height: 90%;
-        border: 3px solid white;
+      * {
+        box-sizing: border-box;
+        cursor: url("img/pyrrhic-tales-prelude-to/1.cur"), auto;
       }
 
       body {
         font-family: "Lucida Console", "Courier New", monospace;
         font-weight: 400;
-        font-style: normal;
         margin: 0;
         padding: 2rem;
-        color: #36ff27;
-        background-color: blue;
+        color: #96ff84;
+        background-color: rgb(3, 3, 198);
+        line-height: 1.6;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* ── SCANLINES ── */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.13) 0px,
+          rgba(0, 0, 0, 0.13) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        pointer-events: none;
+        z-index: 9000;
+      }
+
+      /* ── HUD CORNERS ── */
+      .hud-corner {
+        position: fixed;
+        width: 28px;
+        height: 28px;
+        pointer-events: none;
+        z-index: 8000;
+      }
+      .hud-corner.tl {
+        top: 12px;
+        left: 12px;
+        border-top: 2px solid #36ff27;
+        border-left: 2px solid #36ff27;
+      }
+      .hud-corner.tr {
+        top: 12px;
+        right: 12px;
+        border-top: 2px solid #36ff27;
+        border-right: 2px solid #36ff27;
+      }
+      .hud-corner.bl {
+        bottom: 12px;
+        left: 12px;
+        border-bottom: 2px solid #36ff27;
+        border-left: 2px solid #36ff27;
+      }
+      .hud-corner.br {
+        bottom: 12px;
+        right: 12px;
+        border-bottom: 2px solid #36ff27;
+        border-right: 2px solid #36ff27;
+      }
+
+      /* ── HUD STATUS BAR ── */
+      .hud-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 28px;
+        background: rgba(0, 0, 100, 0.85);
+        border-top: 1px solid #36ff2766;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        color: #36ff27aa;
+        z-index: 8000;
+        pointer-events: none;
+      }
+
+      .hud-bar .blink {
+        animation: blink 1.2s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ── GLITCH OVERLAY ── */
+      .glitch-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 7000;
+        opacity: 0;
+      }
+
+      .glitch-layer.active {
+        animation: colorGlitch 0.12s steps(2) forwards;
+        filter: opacity(0.5);
+      }
+
+      /* ── HUD ── */
+
+      .hud-video {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        width: 290px;
+        z-index: 8000;
+        border: 1px solid #27e619;
+        background: #000;
+        pointer-events: none;
+      }
+
+      .hud-video-bar {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px 8px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        color: #27e619;
+        border-bottom: 1px solid #27e619;
+        background: rgba(83, 26, 255, 0.9);
+      }
+
+      .hud-video-wrap {
+        position: relative;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+      }
+
+      .hud-video-wrap video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: contrast(6) saturate(1) brightness(0.85) sepia(0.7)
+          hue-rotate(80deg) blur(0.7px);
+        transform: scaleX(-1) scale(1);
+        opacity: 0.88;
+      }
+
+      /* scanlines over video */
+      .hud-video-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.25) 0px,
+          rgba(0, 0, 0, 0.25) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .hud-video-footer {
+        padding: 4px 8px;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        color: #27e619;
+        background: rgba(83, 26, 255, 0.9);
         line-height: 1.6;
       }
 
-      h1,
-      h2 {
-        margin-bottom: 0.5rem;
+      /* ── TYPOGRAPHY ── */
+      h1 {
+        font-size: 1.6rem;
+        margin: 0 0 1rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         background-color: #ff15b5;
+        display: inline-block;
+        padding: 2px 8px;
       }
 
+      h2 {
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background-color: #ff15b5;
+        display: inline-block;
+        padding: 2px 8px;
+      }
+
+      h3 {
+        font-size: 0.85rem;
+        margin: 1rem 0 0.4rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #36ff27cc;
+      }
+
+      /* ── INTRO ── */
       .intro {
         max-width: 800px;
         margin-bottom: 2rem;
+        border-left: 2px solid #36ff2744;
+        padding-left: 1rem;
       }
 
+      .intro p {
+        margin: 0.5rem 0 0;
+        font-size: 0.85rem;
+        color: #36ff27bb;
+      }
+
+      /* ── NAV ── */
+      .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 2.5rem;
+      }
+
+      .nav-buttons button {
+        background: transparent;
+        border: 1px solid #36ff2766;
+        color: #36ff27;
+        font-family: inherit;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        padding: 5px 12px;
+        cursor: pointer;
+        transition:
+          background 0.1s,
+          border-color 0.1s;
+      }
+
+      .nav-buttons button:hover {
+        background: #36ff2722;
+        border-color: #36ff27;
+      }
+
+      /* ── LOG ENTRY ── */
       .log-entry {
+        max-width: 860px;
         padding: 1.5rem;
         margin-bottom: 2rem;
+        border: 2px solid #35ff2759;
+        position: relative;
+      }
+
+      /* entry side accent */
+      .log-entry::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #36ff2744;
       }
 
       .log-entry p {
         margin: 0.5rem 0;
+        font-size: 0.85rem;
+        color: #36ff27cc;
+      }
+
+      .log-entry strong {
+        color: #36ff27;
+      }
+
+      .log-entry ul {
+        margin: 0.5rem 0 0.5rem 1.2rem;
+        padding: 0;
+      }
+
+      .log-entry li {
+        font-size: 0.83rem;
+        line-height: 1.7;
+        color: #36ff27bb;
+        margin-bottom: 2px;
+      }
+
+      /* ── GALLERY ── */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .gallery-item {
+        flex: 1 1 200px;
+        max-width: 320px;
+        cursor: zoom-in;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+        border: 1px solid #36ff2755;
+        filter: saturate(0.7) brightness(0.9);
+        transition:
+          filter 0.2s,
+          transform 0.2s;
+      }
+
+      .gallery-item img:hover {
+        filter: saturate(1) brightness(1.05);
+        transform: scale(1.03);
+      }
+
+      .caption,
+      .gallery-item p,
+      figcaption {
+        margin-top: 0.4rem;
+        font-size: 0.72rem;
+        text-align: center;
+        color: #36ff27aa;
+        letter-spacing: 0.05em;
+      }
+
+      /* ── LIGHTBOX ── */
+      #lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      #lightbox img {
+        max-width: 90%;
+        max-height: 85vh;
+        border: 2px solid #36ff2766;
+      }
+
+      #lightbox .lb-close {
+        color: #36ff27;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        border: 1px solid #36ff2766;
+        padding: 4px 14px;
+        cursor: pointer;
+      }
+
+      #lightbox .lb-close:hover {
+        background: #36ff2222;
+      }
+
+      /* ── TIMESTAMP READOUT ── */
+      .ts {
+        font-size: 0.72rem;
+        color: #36ff2777;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .hud-bar a {
+        pointer-events: all;
       }
     </style>
   </head>
   <body>
+    <div class="hud-video">
+      <div class="hud-video-bar">
+        <span id="hudVidTime"></span>
+      </div>
+      <div class="hud-video-wrap">
+        <video id="hudVideo" autoplay playsinline muted></video>
+      </div>
+      <div class="hud-video-footer">SUBJECT: LIVE<br /></div>
+    </div>
+    <!-- HUD corners -->
+    <div class="hud-corner tl"></div>
+    <div class="hud-corner tr"></div>
+    <div class="hud-corner bl"></div>
+    <div class="hud-corner br"></div>
+
+    <!-- HUD status bar -->
+    <div class="hud-bar">
+      <span>
+        <a href="../index.html" style="color: #96ff84; text-decoration: none"
+          >[ ← HOME ]</a
+        >
+        &nbsp;|&nbsp; SUBJECT:
+        <span id="hudSubject">UNKNOWN</span> &nbsp;|&nbsp; STATUS: ACTIVE</span
+      >
+      <span class="blink">⬤ REC</span>
+      <span id="hudTime"></span>
+    </div>
+
+    <!-- glitch layer -->
+    <div class="glitch-layer" id="glitchLayer"></div>
+
+    <div class="nav-buttons">
+      <button onclick="location.href = '../index.html'">[ ← HOME ]</button>
+    </div>
+
     <h1>Site Construction Log</h1>
 
     <div class="intro">
@@ -100,61 +429,39 @@
         refinements.
       </p>
     </div>
-    <div class="nav-buttons">
-      <button onclick="location.href = '../index.html'">
-        [ TAKE_ME_HOME ]
-      </button>
-      <button onclick="location.href = 'Week1Home.html'">
-        [ OPEN WEEK_01 ]
-      </button>
-      <button onclick="location.href = 'Week2Home.html'">
-        [ OPEN WEEK_02 ]
-      </button>
-      <button onclick="location.href = 'Week3Home.html'">
-        [ OPEN WEEK_03 ]
-      </button>
-      <button onclick="location.href = 'siteConstructionLog.html'">
-        [ CURRENT FILE ]
-      </button>
-    </div>
 
     <div class="log-entry">
-      <h2>Stage 1 Initial Concept</h2>
+      <h2>Stage 1 — Initial Concept</h2>
       <p><strong>Date:</strong> 10 March 2026</p>
       <p>
-        I began by brainstorming possible visual style I wanted with crazy 8s.
-        It worked well as it allowed me to quickly sketch down any ideas without
+        I began by brainstorming possible visual styles using Crazy 8s. It
+        worked well as it allowed me to quickly sketch down any ideas without
         hesitation or second thoughts.
       </p>
-
       <div class="gallery">
         <div class="gallery-item">
-          <img src="img/crazy8s1.png" />Crazy 8s 1-4
+          <img src="img/crazy8s1.png" alt="Crazy 8s 1-4" />
+          <div class="caption">Crazy 8s 1–4</div>
         </div>
-
         <div class="gallery-item">
-          <img src="img/crazy8s2.png" alt="" />
-          <div class="caption">Crazy 8s 5-8</div>
+          <img src="img/crazy8s2.png" alt="Crazy 8s 5-8" />
+          <div class="caption">Crazy 8s 5–8</div>
         </div>
         <ul>
-          <li>Plate / Meal → users “consume” content like a curated dish.</li>
-          <li>Folder Stack → Interaction as filing and retrieval.</li>
-          <li>Desk / Setup → A workspace.</li>
-          <li>Brain</li>
-          <li>Plants</li>
-          <li>System UI</li>
-          <li>Scrapbook</li>
-          <li>Fruit bowl</li>
+          <li>Plate / Meal → users "consume" content like a curated dish</li>
+          <li>Folder Stack → interaction as filing and retrieval</li>
+          <li>Desk / Setup → a workspace</li>
+          <li>Brain, Plants, System UI, Scrapbook, Fruit bowl</li>
         </ul>
       </div>
     </div>
 
     <div class="log-entry">
-      <h2>Stage 2 Layout and Structure</h2>
+      <h2>Stage 2 — Layout &amp; Structure</h2>
       <p><strong>Date:</strong> 14 March 2026</p>
       <p>
         I planned the structure of the website and experimented with layout
-        options. At this stage, I focused on navigation, and did some inform
+        options. At this stage, I focused on navigation, and did some informal
         user testing during class by letting others simulate and make
         assumptions about how they would navigate the site.
       </p>
@@ -164,13 +471,11 @@
         I was inspired by the use of getUserMedia() in the interactive media
         webpage and wanted to experiment using this function.
       </p>
-
       <div class="gallery">
         <div class="gallery-item">
           <img src="img/structure.png" alt="Homepage wireframe" />
           <div class="caption">
-            Homepage wireframe, medical reception desk with a sterile look &
-            feel
+            Homepage wireframe — medical reception desk aesthetic
           </div>
         </div>
         <div class="gallery-item">
@@ -181,138 +486,311 @@
     </div>
 
     <div class="log-entry">
-      <h2>An attempt with Google Stitch</h2>
+      <h2>Experiment — Google Stitch</h2>
       <p><strong>Date:</strong> 14 March 2026</p>
       <p>
-        Tried experimenting with stitch to vibe code the website - but honestly
+        Tried experimenting with Stitch to vibe-code the website — but honestly
         not too satisfied with the output. I need to look into prompt
         engineering to manipulate it better.
-        <br />
-        I feel like I was negotiating with the tool instead of having direct
-        dictation over it. What felt awkward at first was the unpredictability
-        and the lack of precision - I'm not used to articulating my design
-        thoughts through prompts. It also struggled to capture the specific
-        aesthetic I was aiming for — especially the darker, surveillance-style
-        interface - often defaulting to cleaner, more generic UI patterns.
-        <br />
-        That said, what worked really well was how quickly it could generate
-        structured layouts and visual directions. It was surprisingly good at
-        producing coherent systems — things like navigation hierarchies, modular
-        panels, and consistent UI components.
-        <br />
-        Overall, I'm keen to keep experimenting with stitch and learn more about
-        how to guide it.
       </p>
-
+      <p>
+        I felt like I was negotiating with the tool instead of having direct
+        dictation over it. What felt awkward was the unpredictability and lack
+        of precision — I'm not used to articulating design thoughts through
+        prompts. It also struggled to capture the specific aesthetic I was
+        aiming for, often defaulting to cleaner, more generic UI patterns.
+      </p>
+      <p>
+        That said, what worked really well was how quickly it could generate
+        structured layouts and visual directions — navigation hierarchies,
+        modular panels, consistent UI components. Overall, keen to keep
+        experimenting.
+      </p>
       <div class="gallery">
         <div class="gallery-item">
-          <img src="img/stitch.png" alt="" />
-          <div class="caption">Stich Work in Progress</div>
+          <img src="img/stitch.png" alt="Stitch WIP" />
+          <div class="caption">Stitch work in progress</div>
         </div>
         <div class="gallery-item">
-          <img src="img/stitch3.png" alt="" />
-          <div class="caption">Initial Output</div>
+          <img src="img/stitch3.png" alt="Initial output" />
+          <div class="caption">Initial output</div>
         </div>
         <div class="gallery-item">
-          <img src="img/stitch2.png" alt="" />
-          <div class="caption">Output after 3 iterations of adjustments</div>
+          <img src="img/stitch2.png" alt="After iterations" />
+          <div class="caption">Output after 3 iterations</div>
         </div>
       </div>
     </div>
 
     <div class="log-entry">
-      <h2>Stage 3 Development and Testing</h2>
+      <h2>Stage 3 — Development &amp; Testing</h2>
       <p><strong>Date:</strong> 20 March 2026</p>
       <p>
         I started coding the website in HTML, CSS, and JavaScript. I tested
         interactive features, adjusted styling, and refined the interface to
         better match the intended experience.
       </p>
-
       <div class="gallery">
         <div class="gallery-item">
-          <img src="img\codeWIP.png" alt="Coding progress screenshot" />
-          <p>Coding progress screenshot</p>
+          <img src="img/codeWIP.png" alt="Coding progress" />
+          <div class="caption">Coding progress</div>
         </div>
         <div class="gallery-item">
-          <img
-            src="img/codeWIP2.png"
-            alt="Adding alert dialog & entry into main webpage content"
-          />
+          <img src="img/codeWIP2.png" alt="Alert dialog" />
           <div class="caption">
-            Adding alert dialog & entry into main webpage content
+            Adding alert dialog &amp; main content entry
           </div>
         </div>
         <div class="gallery-item">
-          <img src="img/cameratest.png" alt="Early test version" />
+          <img src="img/cameratest.png" alt="Early test" />
           <div class="caption">Early test version</div>
         </div>
         <div class="gallery-item">
-          <img src="img/codeWIP3.png" alt="" />
+          <img src="img/codeWIP3.png" alt="Custom cursor" />
           <div class="caption">Adding custom cursor to subpages</div>
         </div>
         <div class="gallery-item">
-          <img src="img/siteconstruction1.png" alt="" />
+          <img
+            src="img/siteconstruction1.png"
+            alt="Original construction page"
+          />
           <div class="caption">Original site construction page</div>
         </div>
       </div>
     </div>
+
     <div class="log-entry">
-      <h2>Web design choices</h2>
+      <h2>Web Design Choices</h2>
       <p><strong>Date:</strong> 25 March 2026</p>
-      <h3>Fonts</h3>
+
+      <h3>// Fonts</h3>
       <p>
         For this project, I chose a monospaced, terminal-style font to reinforce
-        the system/surveillance aesthetic. I’m currently using something like
-        VT323, Special Elite Monospace, and Lucida Console. The first two are
-        static fonts, sourced from Google Fonts and linked directly into the
-        HTML using an @import or <link /> tag. I chose this approach because
-        it’s lightweight and easy to integrate.
+        the system/surveillance aesthetic. I'm currently using VT323, Special
+        Elite, and Lucida Console — sourced from Google Fonts. Lightweight and
+        easy to integrate.
       </p>
 
-      <h3>Website's Narrative</h3>
+      <h3>// Website Narrative</h3>
       <ul>
         <li>
-          interface language (e.g. “Access Verification”, “Initiate Identity
-          Scan”)
+          Interface language — "Access Verification", "Initiate Identity Scan"
         </li>
-        <li>system feedback loops (camera access, scanning, confirmation)</li>
-        <li>subtle environmental cues like glitches and overlays</li>
+        <li>System feedback loops — camera access, scanning, confirmation</li>
+        <li>Subtle environmental cues — glitches, overlays, eye movement</li>
       </ul>
       <p>
         The point is that the user is being constantly monitored, and the
-        website would respond subtly to every interaction they make, in an
-        uncanny way. I was interested in capturing a subtle discomfort of being
-        observed, processed, and not fully in control of the environment.
+        website responds subtly to every interaction in an uncanny way. I was
+        interested in capturing the subtle discomfort of being observed,
+        processed, and not fully in control of the environment.
       </p>
-      <h3>Inspiration</h3>
+
+      <h3>// Inspiration</h3>
       <p>
         Conceptually, I was intrigued by clinical or institutional interfaces
-        that feel functional but cold or impersonal. There’s also inspiration
-        from glitch aesthetics and unstable systems.
+        that feel functional but cold. There's also inspiration from glitch
+        aesthetics and unstable systems.
       </p>
 
       <div class="gallery">
         <div class="gallery-item">
-          <img src="img\audio.png" alt="Coding progress screenshot" />
-          <p>Adding audio</p>
+          <img src="img/audio.png" alt="Adding audio" />
+          <div class="caption">Adding background audio</div>
         </div>
       </div>
     </div>
-    <div id="lightbox" onclick="this.style.display = 'none'">
-      <img id="lightbox-img" src="" />
+
+    <div class="log-entry">
+      <h2>FURTHER REFINEMENT</h2>
+      <p><strong>Date:</strong> 15 April 2026</p>
+      <p>
+        I experimented with cursor effects, glitch overlays, and additional UI
+        elements to enhance the immersive experience. 
+      </p>
+      <p>
+        I want to step up the
+        sense of surveillance through a rotating eyeball and a dynamically
+        rendered welcome message that fetches the user's name and remembers it.
+        In upcoming iterations, I hope to refine the visual design further by
+        incorporating p5.js
+      </p>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img/eyeballss.png" alt="" />
+          <div class="caption">
+            Cursor-tracking eyeball with randomised movement
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="img/code-eyeball.png" alt="" />
+          <div class="caption">
+            Coding WIP - eyeball movement and dynamic name fetching
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <h2>FILE ORGANISATION</h2>
+      <p><strong>Date:</strong> 22 April 2026</p>
+      <p>
+        I made some updates to the filetree structure, ensuring scalability as
+        the weeks progress. I preferred having all of my research entries in one
+        centralised webpage, and other in-class and out-of-class experiments all
+        in another place.
+      </p>
+      <p>
+        I also added home links for easier navigation, based on feedback from
+        Workbook A.
+      </p>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img/filetree.png" alt="" />
+          <div class="caption">File structure</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img/filetree2.png" alt="" />
+          <div class="caption">File structure - sketch architecture</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img/archive.png" alt="" />
+          <div class="caption">New 'homepage' for archived items</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <h2>REFRESHED RESEARCH JOURNAL</h2>
+      <p><strong>Date:</strong> 4 May 2026</p>
+      <p>
+        I refreshed the research journal page to better align with the website's
+        aesthetic and narrative. I wanted to create a more cohesive experience
+        across the site, and felt that the original research journal page was a
+        bit too plain and disconnected from the overall vibe. I added more
+        surveillance-inspired design elements, like the green-on-black color
+        scheme, monospaced fonts, and glitch effects.
+      </p>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img/researchpage.png" alt="" />
+          <div class="caption">Previous research journal page</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img/researchpage2.png" alt="" />
+          <div class="caption">
+            Previous research journal page - Detailed Entry
+          </div>
+        </div>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img/researchjournal.png" alt="" />
+          <div class="caption">Updated research journal page</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img/researchjournal2.png" alt="" />
+          <div class="caption">
+            Updated research journal page - Detailed Entry
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <h2>ENHANCED HOMEPAGE</h2>
+      <p><strong>Date:</strong> 19 May 2026</p>
+      <p>
+        I refreshed the research journal page to better align with the website's
+        aesthetic and narrative. I wanted to create a more cohesive experience
+        across the site, and felt that the original research journal page was a
+        bit too plain and disconnected from the overall vibe. I added more
+        surveillance-inspired design elements, like the green-on-black color
+        scheme, monospaced fonts, and glitch effects.
+      </p>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img/homepagev2.png" alt="Enhanced homepage" />
+          <div class="caption">Enhanced homepage</div>
+        </div>
+        <div class="gallery-item">
+          <img src="img/homepagev1.png" alt="Original homepage" />
+          <div class="caption">Original homepage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+      <img id="lightbox-img" src="" alt="" />
+      <div
+        class="lb-close"
+        onclick="document.getElementById('lightbox').style.display = 'none'"
+      >
+        [ CLOSE ]
+      </div>
     </div>
 
     <script>
-      // Lightbox
-      const items = document.querySelectorAll(".gallery img");
+      const storedName = localStorage.getItem("username") || "UNKNOWN";
+      document.getElementById("hudSubject").textContent =
+        storedName.toUpperCase();
 
-      items.forEach((img) => {
+      // HUD video feed
+      async function startHudVideo() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" },
+            audio: false,
+          });
+          document.getElementById("hudVideo").srcObject = stream;
+        } catch (err) {
+          console.log("HUD camera unavailable:", err);
+        }
+      }
+      startHudVideo();
+
+      // HUD video timestamp
+      const hudVidTime = document.getElementById("hudVidTime");
+      setInterval(() => {
+        hudVidTime.textContent = new Date().toLocaleTimeString("en-GB", {
+          hour12: false,
+        });
+      }, 1000);
+
+      // lightbox
+      document.querySelectorAll(".gallery img").forEach((img) => {
         img.onclick = () => {
           document.getElementById("lightbox-img").src = img.src;
           document.getElementById("lightbox").style.display = "flex";
         };
       });
+      document
+        .getElementById("lightbox")
+        .addEventListener("click", function (e) {
+          if (e.target === this) this.style.display = "none";
+        });
+
+      // HUD clock
+      const hudTime = document.getElementById("hudTime");
+      setInterval(() => {
+        const now = new Date();
+        hudTime.textContent =
+          now.toLocaleDateString("en-GB").replace(/\//g, "-") +
+          "  " +
+          now.toLocaleTimeString("en-GB", { hour12: false });
+      }, 1000);
+
+      // random colorful glitch
+      const glitchLayer = document.getElementById("glitchLayer");
+      function triggerGlitch() {
+        glitchLayer.classList.remove("active");
+        void glitchLayer.offsetWidth; // reflow to restart animation
+        glitchLayer.classList.add("active");
+        setTimeout(() => glitchLayer.classList.remove("active"), 160);
+        setTimeout(triggerGlitch, 2500 + Math.random() * 5000);
+      }
+      triggerGlitch();
     </script>
   </body>
 </html>

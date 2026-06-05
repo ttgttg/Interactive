@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research & Inspo [week1-3]</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        cursor: url("img/pyrrhic-tales-prelude-to/1.cur"), auto;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Lucida Console", "Courier New", monospace;
+        background: #0a0a0a;
+        color: #5dff6e;
+        overflow-x: hidden;
+      }
+
+      /* overall page scanline */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.18) 0px,
+          rgba(0, 0, 0, 0.18) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        pointer-events: none;
+        z-index: 9000;
+      }
+
+      .page {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+
+      .header {
+        border: 1px solid #2a5c2e;
+        background: #050f06;
+        padding: 12px 18px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #5dff6e;
+      }
+
+      .header p {
+        margin: 0;
+        font-size: 12px;
+        color: #2d7a35;
+        letter-spacing: 0.08em;
+      }
+
+      .header-right {
+        margin-left: auto;
+        font-size: 12px;
+        color: #2d7a35;
+        letter-spacing: 0.06em;
+      }
+
+      /* surveillance grid */
+      .board {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 6px;
+        background: #050505;
+      }
+
+      .sticky {
+        position: relative;
+        background: #060e07;
+        border: 1px solid #1a3d1e;
+        cursor: pointer;
+        overflow: hidden;
+        transition: border-color 0.1s;
+      }
+
+      .sticky:hover {
+        border-color: #5dff6e;
+      }
+
+      /* CAM label top-left */
+      .cam-label {
+        position: absolute;
+        top: 6px;
+        left: 8px;
+        font-size: 10px;
+        color: #5dff6ecc;
+        letter-spacing: 0.1em;
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      /* live timestamp top-right */
+      .cam-time {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        font-size: 10px;
+        color: #5dff6ecc;
+        letter-spacing: 0.06em;
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      /* live gitch animation */
+      .img-wrap::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: rgba(93, 255, 110, 0.15);
+        animation: scanSweep 3s linear infinite;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      @keyframes scanSweep {
+        0% {
+          top: 0%;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* image container */
+      .img-wrap {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+      }
+
+      .sticky img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: saturate(0.2) contrast(1.3) brightness(0.85); /*sepia(0.4) hue-rotate(80deg)*/
+        transition: filter 0.2s;
+      }
+
+      .sticky:hover img {
+        filter: saturate(0.35) contrast(1.4) brightness(0.9) sepia(0.4)
+          hue-rotate(80deg);
+      }
+
+      /* scanlines over image */
+      .img-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.18) 0px,
+          rgba(0, 0, 0, 0.18) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* corner brackets on hover */
+      .sticky::before,
+      .sticky::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        opacity: 0;
+        transition: opacity 0.15s;
+        z-index: 5;
+        pointer-events: none;
+      }
+      .sticky::before {
+        top: 0;
+        left: 0;
+        border-top: 1px solid #5dff6e;
+        border-left: 1px solid #5dff6e;
+      }
+      .sticky::after {
+        bottom: 0;
+        right: 0;
+        border-bottom: 1px solid #5dff6e;
+        border-right: 1px solid #5dff6e;
+      }
+      .sticky:hover::before,
+      .sticky:hover::after {
+        opacity: 1;
+      }
+
+      .sticky-info {
+        padding: 8px 10px 10px;
+      }
+
+      .sticky h3 {
+        margin: 0 0 4px 0;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #5dff6e;
+        border-bottom: 1px solid #1a3d1e;
+        padding-bottom: 4px;
+      }
+
+      .sticky p {
+        margin: 0;
+        font-size: 10px;
+        line-height: 1.5;
+        color: #3a8c42;
+      }
+
+      .sticky p a {
+        color: #3a8c42;
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      /* glitch flicker on random cards */
+      @keyframes glitchFlash {
+        0% {
+          opacity: 1;
+        }
+        92% {
+          opacity: 1;
+          clip-path: none;
+          transform: none;
+        }
+        93% {
+          opacity: 0.7;
+          clip-path: inset(20% 0 60% 0);
+          transform: translateX(-3px);
+        }
+        94% {
+          opacity: 1;
+          clip-path: none;
+          transform: none;
+        }
+        97% {
+          opacity: 1;
+          clip-path: none;
+          transform: none;
+        }
+        97.5% {
+          opacity: 0.8;
+          clip-path: inset(50% 0 20% 0);
+          transform: translateX(2px);
+        }
+        98% {
+          opacity: 1;
+          clip-path: none;
+          transform: none;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .sticky.glitching .img-wrap {
+        animation: glitchFlash 4s steps(1) infinite;
+      }
+
+      /* OVERLAY */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        z-index: 9999;
+      }
+
+      .overlay.active {
+        display: flex;
+      }
+
+      /* surveillance monitor popup */
+      .notepad {
+        width: min(900px, 95vw);
+        max-height: 90vh;
+        overflow: auto;
+        background: #060e07;
+        border: 1px solid #2a5c2e;
+        position: relative;
+      }
+
+      /* scanlines in modal too */
+      .notepad::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.12) 0px,
+          rgba(0, 0, 0, 0.12) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .notepad-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #0b1c0d;
+        border-bottom: 1px solid #2a5c2e;
+        padding: 8px 14px;
+      }
+
+      .notepad-bar h2 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #5dff6e;
+      }
+
+      .notepad-bar-meta {
+        font-size: 10px;
+        color: #2d7a35;
+        letter-spacing: 0.08em;
+      }
+
+      .close-btn {
+        border: 1px solid #2a5c2e;
+        background: transparent;
+        font-family: inherit;
+        color: #5dff6e;
+        padding: 3px 10px;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+      }
+
+      .close-btn:hover {
+        background: #2a5c2e;
+      }
+
+      .notepad-body {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 0;
+      }
+
+      .preview-box {
+        border-right: 1px solid #1a3d1e;
+        padding: 14px;
+        position: relative;
+      }
+
+      .preview-box .preview-img-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .preview-box .preview-img-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.25) 0px,
+          rgba(0, 0, 0, 0.25) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+        pointer-events: none;
+      }
+
+      .preview-box img {
+        width: 100%;
+        display: block;
+        filter: saturate(0.2) contrast(1.3) brightness(0.75) sepia(0.4)
+          hue-rotate(80deg);
+        margin-bottom: 10px;
+      }
+
+      .preview-box p {
+        margin: 0;
+        font-size: 10px;
+        line-height: 1.5;
+        color: #2d7a35;
+        letter-spacing: 0.05em;
+      }
+
+      .sticky h3 {
+        font-size: 15px;
+      }
+
+      .text-box {
+        padding: 14px;
+        background: #050f06;
+      }
+
+      .text-box label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2d7a35;
+      }
+
+      .text-box textarea {
+        width: 100%;
+        min-height: 380px;
+        resize: vertical;
+        border: 1px solid #1a3d1e;
+        background: #030a04;
+        font-family: inherit;
+        font-size: 12px;
+        line-height: 1.7;
+        padding: 12px;
+        color: #5dff6e;
+        outline: none;
+      }
+
+      .text-box textarea:focus {
+        border-color: #5dff6e;
+      }
+
+      @media (max-width: 800px) {
+        .notepad-body {
+          grid-template-columns: 1fr;
+        }
+        .preview-box {
+          border-right: none;
+          border-bottom: 1px solid #1a3d1e;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <a
+          href="../index.html"
+          style="
+            font-family: inherit;
+            font-size: 16px;
+            letter-spacing: 0.05em;
+            color: #5dff6e;
+            padding: 4px 6px;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+          "
+          >← HOME</a
+        >
+        <h1>// Hunter & Gatherer [click a cam to open subject file]</h1>
+        <div class="header-right" id="headerTime"></div>
+      </div>
+
+      <div class="board" id="board">
+        <div
+          class="sticky"
+          data-title="Ghost in the Shell"
+          data-img="https://andphilosophy.com/wp-content/uploads/2017/04/ghostintheshell.jpg"
+          data-text='Ghost in the shell
+
+The body itself is an interface between:
+
+- human consciousness ("ghost")
+- machine body ("shell")
+
+*The user IS the interface*
+
+The theme of "zero-interface" or rather, seamless integration of human and machine, is recurring. There wasn&apos;t much "visible" technology as computational information was being transferred and processed through human consciousness. Humans live with cybernetic bodies and networked consciousness - and I&apos;m intrigued by how identity becomes intertwined with quantitative data and neural networks.
+
+Here, I found it interesting that interface becomes the extension of the physical body and identity, you can say it&apos;s truly tailored to the user but also dictating their self-perception. Made me think about how well humans adapt to technologies.'
+        >
+          <div class="cam-label">CAM_01</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img
+              src="https://andphilosophy.com/wp-content/uploads/2017/04/ghostintheshell.jpg"
+              alt="Ghost in the Shell preview"
+            />
+          </div>
+          <div class="sticky-info">
+            <h3>Ghost in the Shell</h3>
+            <p>cybernetic bodies, zero-interface, identity</p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="The useless web"
+          data-img="img/uselessweb.png"
+          data-text="When we navigate to a certain address on the web, especially desktops, I've always felt there's a strong presence of goal and purpose, and wanting to achieve an outcome. This was interesting because it allowed me to do something mundane."
+        >
+          <div class="cam-label">CAM_02</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/uselessweb.png" alt="Useless Web" />
+          </div>
+          <div class="sticky-info">
+            <h3>Useless Web</h3>
+            <p>
+              <a href="https://theuselessweb.com/"
+                >https://theuselessweb.com/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="The day I couldn't write a poem"
+          data-img="img/theday.png"
+          data-text="I loved the interactive poem. It triggered curiosity, the difficulty made me appreciate how easy it was to access the next line of poem by flipping the page, instead of having to jump through obstacles and restart. Interesting way of making a standard interaction a more immersive and personal experience."
+        >
+          <div class="cam-label">CAM_03</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/theday.png" alt="The day I couldn't write a poem" />
+          </div>
+          <div class="sticky-info">
+            <h3>The day I couldn't write a poem</h3>
+            <p>
+              <a
+                href="https://sunsetdandan.itch.io/the-day-i-couldnt-write-a-poem"
+                >sunsetdandan.itch.io</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Beckmans Examensutställning 2024"
+          data-img="img/beckman.png"
+          data-text="Spreadsheets can be cool too. Love how it transformed perceived boredom into an exhibition and a medium/interface for artistic expression. Seeing creative work embedded into that rigid grid made it feel like the system itself was being “hacked” or repurposed. A reminder to think outside of the box."
+        >
+          <div class="cam-label">CAM_04</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/beckman.png" alt="Beckmans" />
+          </div>
+          <div class="sticky-info">
+            <h3>Beckmans Examensutställning 2024</h3>
+            <p>
+              <a href="https://beckmans.college/2024/sv"
+                >https://beckmans.college/2024/sv</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="JODI.ORG"
+          data-img="img/jodi.png"
+          data-text="Joan Heemskerk + Dirk Paesmans
+pioneers of net.art (mid-1990s)
+
+Navigating without context felt like an infinity maze of corrupted files, system errors and random ASCII / code.
+It's confusing and meaningless, subverting conventional web design. It makes me uncomfortable and unsettled, but in a way that made me more aware of how much I rely on websites to MAKE SENSE."
+        >
+          <div class="cam-label">CAM_05</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap"><img src="img/jodi.png" alt="JODI" /></div>
+          <div class="sticky-info">
+            <h3>JODI.ORG</h3>
+            <p>
+              <a href="https://wwwwwwwww.jodi.org">wwwwwwwww.jodi.org</a>
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Reading machines"
+          data-img="img/readingmachines.png"
+          data-text="
+So what if the gesture of reading is not flipping a page, or scrolling? Instead of predictable actions, I found myself navigating fragments, sounds, and interactions that felt more like exploration. Interfaces really do shape how we absorb literature. "
+        >
+          <div class="cam-label">CAM_06</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/readingmachines.png" alt="Reading machines" />
+          </div>
+          <div class="sticky-info">
+            <h3>Reading machines</h3>
+            <p>
+              <a href="https://tdingsun.github.io/reading-machines/"
+                >tdingsun.github.io</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Cyborg Botany & bio-interaction design"
+          data-img="https://figures.semanticscholar.org/adc5cd24d6a00a4d001d3c1ce1e4653c1a1f26a9/58-Table1-1.png"
+          data-text="What I find compelling is that plants already embody many of the qualities we ideally aim for in sci-fi technologies: self-sufficiency, self-repairing, adaptability, and low resource dependence. Gets me thinking - could hardware be *alive* instead of disposable?
+
+Also - I’ve always associated interfaces with clarity and immediacy, designed to prioritise usability. But this approach introduces a level of ambiguity that makes bio-interaction design interesting compared to standard HCI. It’s less about creating novel interfaces, more about “speaking” directly to existing objects. The plant is no longer just a medium or a sensor, but part of the interaction itself.
+
+https://www.semanticscholar.org/paper/Cyborg-Botany%3A-Augmented-Plants-as-Sensors%2C-and-Sareen-Zheng/90755d2285f93bb725c5fe6fd7f3235fe000489b
+
+"
+        >
+          <div class="cam-label">CAM_07</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img
+              src="https://figures.semanticscholar.org/adc5cd24d6a00a4d001d3c1ce1e4653c1a1f26a9/58-Table1-1.png"
+              alt="Cyborg Botany"
+            />
+          </div>
+          <div class="sticky-info">
+            <h3>Cyborg Botany &amp; bio-interaction</h3>
+            <p>
+              <a
+                href="https://www.media.mit.edu/projects/cyborg-botany/overview/"
+                >media.mit.edu</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Rosa Menkman's Beyond Resolution"
+          data-img="img/beyondresolution.png"
+          data-text="The resolution determines what gets recognised. But what happens beyond this? 
+I guess the homepage is an example of a page that is visibly, deliberately failing on resolution. The medium keeps interrupting itself and there are literal patches. I do enjoy seeing the rawness being exposed again. We see the output of the computer all the time but I have no idea what goes on inside the black box, beyond the rendered image and the clean UI."
+        >
+          <div class="cam-label">CAM_08</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/beyondresolution.png" alt="Rosa Menkman" />
+          </div>
+          <div class="sticky-info">
+            <h3>Rosa Menkman's Beyond Resolution</h3>
+            <p>
+              <a href="https://beyondresolution.info/"
+                >https://beyondresolution.info/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Olia Lialina"
+          data-img="img/mybf.png"
+          data-text="Looking at this in 2026 gives a nostalgic feel. The slowness, the low resolution images, the black and white were just the web. Her artistic practice preserves the vernacular web. It's a bold move on computers as an interface for emotion."
+        >
+          <div class="cam-label">CAM_09</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/mybf.png" alt="Olia Lialina" />
+          </div>
+          <div class="sticky-info">
+            <h3>Olia Lialina</h3>
+            <p>
+              <a href="http://www.teleportacia.org/war/wara.htm"
+                >teleportacia.org</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Cyberfeminism Index"
+          data-img="img/cyber.png"
+          data-text="Cyberfeminism is said to be a collection of emancipatory theories and practices that foster an alliance between feminists and technology. I enjoyed seeing the various ways in which WWW has been interpreted to empower, similar analogy of glitches where the body that doesn't render correctly within the system as a site of power rather than failure..."
+        >
+          <div class="cam-label">CAM_10</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/cyber.png" alt="Cyberfeminism Index" />
+          </div>
+          <div class="sticky-info">
+            <h3>Cyberfeminism Index</h3>
+            <p>
+              <a href="https://cyberfeminismindex.com/"
+                >https://cyberfeminismindex.com/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="mouchette"
+          data-img="img/mouchette.png"
+          data-text="It's using the sincerity of the 90s personal web — that Welcome to my home page energy. But slightly disturbing and eerie. Navigating to a whole new page felt like there was going to be a jumpscare. The whole thing makes you feel like you've stumbled into something you weren't supposed to see, or it's been possessed by another entity, corrupted. Which is maybe the point?"
+        >
+          <div class="cam-label">CAM_11</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/mouchette.png" alt="mouchette" />
+          </div>
+          <div class="sticky-info">
+            <h3>mouchette</h3>
+            <p><a href="https://mouchette.org/">https://mouchette.org/</a></p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Sarah Fatmi"
+          data-img="img/ILLUST.png"
+          data-text="I love the horizontal scroll of the portfolio - something that really speaks to her practice as an illustrator. Seeing the pieces unravel made me think about the power of digital storytelling as opposed to traditional - you have full control over when and how much to show your audience."
+        >
+          <div class="cam-label">CAM_12</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/ILLUST.png" alt="Sarah Fatmi" />
+          </div>
+          <div class="sticky-info">
+            <h3>Sarah Fatmi</h3>
+            <p>
+              <a href="https://sarahfatmi.com/index.html"
+                >https://sarahfatmi.com/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="LIDO FESTIVAL"
+          data-img="img/lido.png"
+          data-text="Beautiful architectural feel to this site map, with moving ruler navigation bars, and rotating perspectives on the lineup at different venues."
+        >
+          <div class="cam-label">CAM_13</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/lido.png" alt="LIDO FESTIVAL" />
+          </div>
+          <div class="sticky-info">
+            <h3>LIDO FESTIVAL</h3>
+            <p>
+              <a href="https://siteplan.lidofestival.co.uk/"
+                >siteplan.lidofestival.co.uk</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Rafael Rozendaal"
+          data-img="img/rafael.png"
+          data-text="When I first landed on the site, I thought each colorful plane were interactive elements where I could click into a window then be transported to the next, an infinity exhibition. Then I realised clicking anywhere would take u somewhere. But I supposed that's where the magic of his work sits — that illusion of being transported into an otherly inescapable dimension."
+        >
+          <div class="cam-label">CAM_14</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/rafael.png" alt="Rafael Rozendaal" />
+          </div>
+          <div class="sticky-info">
+            <h3>Rafael Rozendaal</h3>
+            <p>
+              <a href="https://www.newrafael.com/"
+                >https://www.newrafael.com/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Constraint Systems"
+          data-img="img/constraint.png"
+          data-text="
+Constraint Systems is a collection of experimental web-based creative tools. They are an ongoing attempt to explore alternative ways of interacting with pixels and text on a computer screen.
+
+I'm curious to also play with pixels and dive into the mathematical side of the web. Sometimes a calculated, predictable system can bring surprising results when applied to unusual objects, as seen in cyborg plants and reading machines."
+        >
+          <div class="cam-label">CAM_15</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/constraint.png" alt="Constraint Systems" />
+          </div>
+          <div class="sticky-info">
+            <h3>Constraint Systems</h3>
+            <p>
+              <a href="https://constraint.systems/"
+                >https://constraint.systems/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="symphony in acid"
+          data-img="img/symphony.png"
+          data-text="This is an interactive website promoting a music track by Max Cooper, made entirely with HTML & JS. You also able to take a selfie rendered with lyrics. I thought the synchronisation of twitching animation, typographic play, and music is really inspiring."
+        >
+          <div class="cam-label">CAM_16</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/symphony.png" alt="symphony in acid" />
+          </div>
+          <div class="sticky-info">
+            <h3>symphony in acid</h3>
+            <p>
+              <a href="https://symphonyinacid.net/"
+                >https://symphonyinacid.net/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Dictionary of online behaviour"
+          data-img="https://www.dictionaryofonlinebehavior.com/img/Open_graph_doob_teyosh.png"
+          data-text="A collection of observed human phenomena online. I like the 3D rendered file cases, and the frutiger-aero-esque appearance."
+        >
+          <div class="cam-label">CAM_17</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img
+              src="https://www.dictionaryofonlinebehavior.com/img/Open_graph_doob_teyosh.png"
+              alt="Dictionary of online behaviour"
+            />
+          </div>
+          <div class="sticky-info">
+            <h3>Dictionary of online behaviour</h3>
+            <p>
+              <a href="https://dictionaryofonlinebehavior.com/"
+                >https://dictionaryofonlinebehavior.com/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Yannick Gregoire"
+          data-img="img/yannick.png"
+          data-text="Stunning manipulation of pixels and ascii calculations. It feels primitive and modern all at the same time."
+        >
+          <div class="cam-label">CAM_18</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/yannick.png" alt="Yannick Gregoire" />
+          </div>
+          <div class="sticky-info">
+            <h3>Yannick Gregoire</h3>
+            <p>
+              <a href="https://yannickgregoire.nl/"
+                >https://yannickgregoire.nl/</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Space Type Generator"
+          data-img="img/space.png"
+          data-text="Web tool for playing with typographics, had a go at some features and also inspected codes to see if I can build similar effects on my own - possible as it's made with p5.js."
+        >
+          <div class="cam-label">CAM_19</div>
+          <div class="cam-time"></div>
+          <div class="img-wrap">
+            <img src="img/space.png" alt="Space Type Generator" />
+          </div>
+          <div class="sticky-info">
+            <h3>Space Type Generator</h3>
+            <p>
+              <a href="https://spacetypegenerator.com/morisawa"
+                >spacetypegenerator.com</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERLAY MODAL -->
+    <div class="overlay" id="overlay">
+      <div class="notepad">
+        <div class="notepad-bar">
+          <h2 id="padTitle">SUBJECT FILE</h2>
+          <button class="close-btn" id="closeBtn">[ CLOSE ]</button>
+        </div>
+        <div class="notepad-body">
+          <div class="preview-box">
+            <div class="preview-img-wrap">
+              <img id="padImg" src="" alt="Preview" />
+            </div>
+            <p id="padUrl"></p>
+          </div>
+          <div class="text-box">
+            <label for="padText">// REFLECTION_LOG</label>
+            <textarea id="padText"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // timestamps
+      function getTime() {
+        return new Date().toLocaleTimeString("en-GB", { hour12: false });
+      }
+      function getDate() {
+        return new Date().toLocaleDateString("en-GB").replace(/\//g, "-");
+      }
+
+      // header clock
+      const headerTime = document.getElementById("headerTime");
+      setInterval(() => {
+        headerTime.textContent = getDate() + "  " + getTime();
+      }, 1000);
+
+      // per-card timestamps — each card gets a slightly different offset so they don't all show the same second
+      const camTimes = document.querySelectorAll(".cam-time");
+      camTimes.forEach((el, i) => {
+        setInterval(() => {
+          el.textContent = getTime();
+        }, 1000);
+      });
+
+      // random glitch effect on random cards
+      const stickies = document.querySelectorAll(".sticky");
+      function randomGlitch() {
+        const card = stickies[Math.floor(Math.random() * stickies.length)];
+        card.classList.add("glitching");
+        setTimeout(() => card.classList.remove("glitching"), 4000);
+        setTimeout(randomGlitch, 2000 + Math.random() * 5000);
+      }
+      randomGlitch();
+
+      // modal
+      const overlay = document.getElementById("overlay");
+      const closeBtn = document.getElementById("closeBtn");
+      const padTitle = document.getElementById("padTitle");
+      const padImg = document.getElementById("padImg");
+      const padText = document.getElementById("padText");
+      const padUrl = document.getElementById("padUrl");
+
+      stickies.forEach((note) => {
+        note.addEventListener("click", () => {
+          padTitle.textContent = note.dataset.title;
+          padImg.src = note.dataset.img;
+          padImg.alt = note.dataset.title;
+          padText.value = note.dataset.text;
+          const link = note.querySelector("a");
+          padUrl.textContent = link ? link.href : "";
+          overlay.classList.add("active");
+        });
+      });
+
+      closeBtn.addEventListener("click", () =>
+        overlay.classList.remove("active"),
+      );
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) overlay.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>

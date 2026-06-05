@@ -92,9 +92,17 @@ startBtn.addEventListener("click", async () => {
       statusText.textContent = "Verified";
 
       setTimeout(() => {
+
+        const name = prompt("IDENTIFY YOURSELF") || "unknown subject";
+        localStorage.setItem("username", name);
+
         alert(
-          "Access granted. You are now under surveillance ( -_•)▄︻テحكـ━一",
+          `Access granted. You are now under surveillance ( -_•)▄︻テحكـ━一`,
         );
+
+        document.querySelector("#mainContent h1").textContent =
+          `Welcome back again, ${name}.`;
+
 
         stopCamera();
         stopGlitch();
@@ -118,3 +126,46 @@ startBtn.addEventListener("click", async () => {
     console.error(err);
   }
 });
+
+//GET USER'S NAME
+const name = localStorage.getItem("username") || "unknown subject";
+document.querySelector("#mainContent h1").textContent =
+  `Welcome back again, ${name}.`;
+
+
+
+//EYEBALL MOVEMENT
+const cornerEyeImg = document.getElementById("cornerEyeImg");
+
+let idleTime = null;
+let isIdle = true;
+let lastMouseAngle = 0;
+
+document.addEventListener("mousemove", (e) => {
+  isIdle = false;
+  clearTimeout(idleTime);
+
+  const r = cornerEyeImg.getBoundingClientRect();
+  const cx = r.left + r.width / 2;
+  const cy = r.top + r.height / 2;
+  const angle = Math.atan2(e.clientY - cy, e.clientX - cx) * (180 / Math.PI);
+  lastMouseAngle = angle;
+  cornerEyeImg.style.transform = `rotate(${angle}deg)`;
+
+  idleTime = setTimeout(() => {
+    isIdle = true;
+  }, 1000);
+});
+
+//IDLE EYEBALL MOVEMENT
+function idleDrift() {
+  if (isIdle) {
+    const drift =
+      lastMouseAngle +
+      Math.sin(Date.now() * 0.005) * 18 +
+      Math.sin(Date.now() * 0.0071 + 2.7) * 7;
+    cornerEyeImg.style.transform = `rotate(${drift}deg)`;
+  }
+  requestAnimationFrame(idleDrift);
+}
+idleDrift();

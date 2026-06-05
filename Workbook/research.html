@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research & Inspo [week1-3]d</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        cursor: url("img/pyrrhic-tales-prelude-to/1.cur"), auto;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Lucida Console", "Courier New", monospace;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+          ),
+          #d9dde2;
+        background-size: 22px 22px;
+        color: #111;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .header {
+        background: #cfd5db;
+        border: 2px solid #73787d;
+        box-shadow: 4px 4px 0 #a5abb0;
+        padding: 14px 18px;
+        margin-bottom: 24px;
+      }
+
+      .header h1 {
+        margin: 0 0 6px 0;
+        font-size: 28px;
+        letter-spacing: 2px;
+      }
+
+      .header p {
+        margin: 0;
+        font-size: 13px;
+      }
+
+      .board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 20px;
+      }
+
+      .sticky {
+        background: #f8f8f4;
+        border: 2px solid #6d6d6d;
+        box-shadow: 4px 4px 0 #b8b8b8;
+        padding: 12px;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+      }
+
+      .sticky:hover {
+        transform: translateY(-3px);
+      }
+
+      .sticky img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+        border: 1px solid #555;
+        margin-bottom: 10px;
+      }
+
+      .sticky h3 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+        border-bottom: 1px dashed #888;
+        padding-bottom: 6px;
+      }
+
+      .sticky p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #333;
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        z-index: 999;
+      }
+
+      .overlay.active {
+        display: flex;
+      }
+
+      .notepad {
+        width: min(900px, 95vw);
+        max-height: 90vh;
+        overflow: auto;
+        background: #f4f4f4;
+        border: 2px solid #777;
+        box-shadow: 6px 6px 0 #9f9f9f;
+      }
+
+      .notepad-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #c7cdd4;
+        border-bottom: 2px solid #8a9096;
+        padding: 10px 14px;
+      }
+
+      .notepad-bar h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .close-btn {
+        border: 1px solid #666;
+        background: #ececec;
+        font-family: inherit;
+        padding: 4px 10px;
+        cursor: pointer;
+      }
+
+      .notepad-body {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .preview-box,
+      .text-box {
+        background: #fafafa;
+        border: 2px inset #d3d3d3;
+        padding: 12px;
+      }
+
+      .preview-box img {
+        width: 100%;
+        display: block;
+        border: 1px solid #555;
+        margin-bottom: 10px;
+      }
+
+      .preview-box p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .text-box textarea {
+        width: 100%;
+        min-height: 420px;
+        resize: vertical;
+        border: 1px solid #666;
+        background: #fffef8;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1.65;
+        padding: 12px;
+      }
+
+      .text-box label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+      }
+
+      @media (max-width: 800px) {
+        .notepad-body {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <h1>Research & Inspiration [Week 1-3]</h1>
+        <p>click a note to open a larger notepad for reflections</p>
+      </div>
+
+      <div class="board">
+        <div
+          class="sticky"
+          data-title="Ghost in the Shell"
+          data-img="https://static01.nyt.com/images/2017/03/26/arts/26GHOSTSHELL1/26GHOSTSHELL1-superJumbo-v3.jpg"
+          data-text='Ghost in the shell
+
+The body itself is an interface between:
+
+- human consciousness (“ghost”)
+- machine body (“shell”)
+
+*The user IS the interface*
+
+The theme of "zero-interface" or rather, seamless integration of human and machine, is recurring. There wasn&apos;t much "visible" technology as computational information was being transferred and processed through human consciousness. Humans live with cybernetic bodies and networked consciousness - and I&apos;m intrigued by how identity becomes intertwined with quantitative data and neutral networks.
+
+Here, I found it interesting that interface becomes the extension of the physical body and identity, you can say it’s truly tailored to the user but also dictating their self-perception. Made me think about how well humans adapt to technologies.'
+        >
+          <img
+            src="https://andphilosophy.com/wp-content/uploads/2017/04/ghostintheshell.jpg"
+            alt="Ghost in the Shell preview"
+          />
+          <h3>Ghost in the Shell</h3>
+          <p>cybernetic bodies, zero-interface, identity</p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="The useless web"
+          data-img="img/uselessweb.png"
+          data-text="
+When we navigate to a certain address on the web, especially desktops, I've always felt there's a strong presence of goal and purpose, and wanting to achieve an outcome. This was interesting
+          because it allowed me to do something mundane."
+        >
+          <img src="img/uselessweb.png" alt="" />
+          <h3>Useless Web</h3>
+          <p>
+            <a href="https://theuselessweb.com/">https://theuselessweb.com/</a>
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="The day I couldn't write a poem"
+          data-img="img/theday.png"
+          data-text="
+I loved the interactive poem. It triggered curiosity, the difficulty made me appreciate how easy it was to access the next line of poem by flipping the page, instead of having to jump through obstacles and restart. Interesting way of making a standard interaction a more immersive and personal experience"
+        >
+          <img src="img/theday.png" alt="" />
+          <h3>The day I couldn't write a poem</h3>
+          <p>
+            <a
+              href="https://sunsetdandan.itch.io/the-day-i-couldnt-write-a-poem"
+              >https://sunsetdandan.itch.io/the-day-i-couldnt-write-a-poem</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Beckmans Examensutställning 2024"
+          data-img="img/beckman.png"
+          data-text="
+Spreadsheets can be cool too. Love how it transformed perceived boredom into an exhibition and a medium/interface for artistic expression. Seeing creative work embedded into that rigid grid made it feel like the system itself was being “hacked” or repurposed. A reminder to think outside of the box."
+        >
+          <img src="img/beckman.png" alt="" />
+          <h3>Beckmans Examensutställning 2024</h3>
+          <p>
+            <a href="https://beckmans.college/2024/sv"
+              >https://beckmans.college/2024/sv</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="JODI.ORG"
+          data-img="img/JODI.png"
+          data-text="
+Joan Heemskerk + Dirk Paesmans
+pioneers of net.art (mid-1990s)
+
+Navigating without context felt like an infinity maze of corrupted files, system errors and random ASCII / code.
+It's confusing and meaningless, subverting conventional web design. It makes me uncomfortable and unsettled, but in a way that made me more aware of how much I rely on websites to MAKE SENSE."
+        >
+          <img src="img/JODI.png" alt="" />
+          <h3>JODI.ORG</h3>
+          <p>
+            <a href="https://wwwwwwwww.jodi.org/100cc/zxcvb/index.html"
+              >https://wwwwwwwww.jodi.org/ 100cc/zxcvb/index.html</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Reading machines"
+          data-img="img/readingmachines.png"
+          data-text="
+So what if the gesture of reading is not flipping a page, or scrolling? Instead of predictable actions, I found myself navigating fragments, sounds, and interactions that felt more like exploration. Interfaces really do shape how we absorb literature. "
+        >
+          <img src="img/readingmachines.png" alt="" />
+          <h3>Reading machines</h3>
+          <p>
+            <a href="https://tdingsun.github.io/reading-machines/"
+              >https://tdingsun.github.io/reading-machines/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Cyborg Botany & bio-interaction design"
+          data-img="https://figures.semanticscholar.org/adc5cd24d6a00a4d001d3c1ce1e4653c1a1f26a9/58-Table1-1.png"
+          data-text="
+What I find compelling is that plants already embody many of the qualities we ideally aim for in sci-fi technologies: self-sufficiency, self-repairing, adaptability, and low resource dependence. Gets me thinking - could hardware be *alive* instead of disposable?
+
+Also - I’ve always associated interfaces with clarity and immediacy, designed to prioritise usability. But this approach introduces a level of ambiguity that makes bio-interaction design interesting compared to standard HCI. It’s less about creating novel interfaces, more about “speaking” directly to existing objects. The plant is no longer just a medium or a sensor, but part of the interaction itself.
+
+https://www.semanticscholar.org/paper/Cyborg-Botany%3A-Augmented-Plants-as-Sensors%2C-and-Sareen-Zheng/90755d2285f93bb725c5fe6fd7f3235fe000489b
+
+"
+        >
+          <img
+            src="https://dam-prod.media.mit.edu/thumb/2019/05/08/2.gif.1400x1400.gif"
+            alt=""
+          />
+          <h3>Cyborg Botany & bio-interaction design</h3>
+          <p>
+            <a href="https://www.media.mit.edu/projects/cyborg-botany/overview/"
+              >https://www.media.mit.edu/ projects/cyborg-botany/overview/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Rosa Menkman's Beyond Resolution"
+          data-img="img/beyondresolution.png"
+          data-text="
+The resolution determines what gets recognised. But what happens beyond this? 
+I guess the homepage is an example of a page that is visibly, deliberately failing on resolution. The medium keeps interrupting itself and there are literal patches. I do enjoy seeing the rawness being exposed again. We see the output of the computer all the time but I have no idea what goes on inside the black box, beyond the rendered image and the clean UI."
+        >
+          <img src="img/beyondresolution.png" alt="" />
+          <h3>Rosa Menkman's Beyond Resolution</h3>
+          <p>
+            <a href="https://beyondresolution.info/"
+              >https://beyondresolution.info/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="future interface"
+          data-img="img/futureUI.png"
+          data-text="
+A board for how we imagine future HCI, in pop culture. These UIs are designed to perform intelligence. The similarity shows that this vision/aesthetic becomes a mental model [not that it isn't cool to look at]. 
+It's interesting that my own visual instinct for *futuristic* design is probably borrowed from a prop designer working on a film set in 1988. Maybe it was only ever meant to convince.
+"
+        >
+          <img src="img/futureUI.png" alt="" />
+          <h3>future interface</h3>
+          <p>
+            <a href="https://futureinterface.tumblr.com/"
+              >https://futureinterface.tumblr.com/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Olia Lialina"
+          data-img="img/mybf.png"
+          data-text="
+Looking at this in 2026 gives a nostalgic feel. The slowness, the low resolution images, the black and white were just the web. Her artistic practice preserves the vernacular web. It's a bold move on computers as an interface for emotion."
+        >
+          <img src="img/mybf.png" alt="" />
+          <h3>Olia Lialina</h3>
+          <p>
+            <a href="http://www.teleportacia.org/war/wara.htm"
+              >http://www.teleportacia.org/war/wara.htm</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Cyberfeminism Index"
+          data-img="img/cyber.png"
+          data-text="
+Cyberfeminism is said to be a collection of emancipatory theories and practices that foster an alliance between feminists and technology.
+I enjoyed seeing the various ways in which WWW has been interpreted to empower, similar analogy of glitches where the body that doesn't render correctly within the system as a site of power rather than failure.. .
+"
+        >
+          <img src="img/cyber.png" alt="" />
+          <h3>Cyberfeminism Index</h3>
+          <p>
+            <a href="https://cyberfeminismindex.com/"
+              >https://cyberfeminismindex.com/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="mouchette"
+          data-img="img/mouchette.png"
+          data-text="
+It's using the sincerity of the 90s personal web — that Welcome to my home page energy. But slightly disturbing and eerie. Navigating to a whole new page felt like there was going to be a jumpscare.
+The whole thing makes you feel like you've stumbled into something you weren't supposed to see, or it's been possessed by another entity, corrupted. Which is maybe the point?"
+        >
+          <img src="img/mouchette.png" alt="" />
+          <h3>mouchette</h3>
+          <p>
+            <a href="https://mouchette.org/">https://mouchette.org/</a>
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Sarah Fatmi"
+          data-img="img/ILLUST.png"
+          data-text="
+I love the horizontal scroll of the portfolio - something that really speaks to her practice as an illustrator. Seeing the pieces unravel made me think about the power of digital storytelling as opposed to traditional - you have full control over when and how much to show your audience. That progressive disclosure can be played around a lot more, just like in the Day I Couldn't Write a Poem."
+        >
+          <img src="img/ILLUST.png" alt="" />
+          <h3>Sarah Fatmi</h3>
+          <p>
+            <a href="https://sarahfatmi.com/index.html"
+              >https://sarahfatmi.com/index.html</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="LIDO FESTIVAL"
+          data-img="img/lido.png"
+          data-text="Beautiful architectural feel to this site map, with moving ruler navigation bars, and rotating perspectives on the lineup at different venues.
+"
+        >
+          <img src="img/lido.png" alt="" />
+          <h3>LIDO FESTIVAL</h3>
+          <p>
+            <a href="https://siteplan.lidofestival.co.uk/"
+              >https://siteplan.lidofestival.co.uk/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Rafael Rozendaal"
+          data-img="img/rafael.png"
+          data-text="
+When I first landed on the site, I thought each colorful plane were interactive elements where I could clink into a window then be transported to the next, an infinity exhibition. Then I realised clicking anywhere would take u somewhere. But i supposed thats where the magic of his work sits - that illusion of being transported into an otherly inescapable dimension, where each destination feels complete and sealed. There's no visible edge to navigate toward. It feels as if I'm not moving through a site, but being relocated, randomly assigned, to wormholes."
+        >
+          <img src="img/rafael.png" alt="" />
+          <h3>Rafael Rozendaal</h3>
+          <p>
+            <a href="https://www.newrafael.com/">https://www.newrafael.com/</a>
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Constraint Systems"
+          data-img="img/constraint.png"
+          data-text="
+Constraint Systems is a collection of experimental web-based creative tools. They are an ongoing attempt to explore alternative ways of interacting with pixels and text on a computer screen.
+
+I'm curious to also play with pixels and dive into the mathematical side of the web. Sometimes a calculated, predictable system can bring surprising results when applied to unusual objects, as seen in cyborg plants and reading machines."
+        >
+          <img src="img/constraint.png" alt="" />
+          <h3>Constraint Systems</h3>
+          <p>
+            <a href="https://constraint.systems/?ref=fuse-kiwi"
+              >https://constraint.systems/?ref=fuse-kiwi</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="symphony in acid"
+          data-img="img/symphony.png"
+          data-text="
+This is an interactive website promoting a music track by Max Cooper, made entirely with HTML & JS. You also able to take a selfie rendered with lyrics. I thought the symchronisation of twitching animation, typographic play, and music is really inspiring. It gives a weird sense of satisfaction, and I wish to incorporate multi-sensory experiences like this in my own work."
+        >
+          <img src="img/symphony.png" alt="" />
+          <h3>symphony in acid</h3>
+          <p>
+            <a href="https://symphonyinacid.net/"
+              >https://symphonyinacid.net/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Dictionary of online behaviour"
+          data-img="https://www.dictionaryofonlinebehavior.com/img/Open_graph_doob_teyosh.png"
+          data-text="
+A collection of observed human phenomena online. I like the 3D rendered file cases, and the frutiger-aero-esque appearance.
+"
+        >
+          <img
+            src="https://www.dictionaryofonlinebehavior.com/img/Open_graph_doob_teyosh.png"
+            alt=""
+          />
+          <h3>Dictionary of online behaviour</h3>
+          <p>
+            <a href="https://dictionaryofonlinebehavior.com/"
+              >https://dictionaryofonlinebehavior.com/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Yannick Gregoire"
+          data-img="img/yannick.png"
+          data-text="
+Stunning manipulation of pixels and ascii calculations. It feels primitive and modern all at the same time. 
+"
+        >
+          <img src="img/yannick.png" alt="" />
+          <h3>Yannick Gregoire</h3>
+          <p>
+            <a href="https://yannickgregoire.nl/"
+              >https://yannickgregoire.nl/</a
+            >
+          </p>
+        </div>
+
+        <div
+          class="sticky"
+          data-title="Space Type Generator"
+          data-img="img/space.png"
+          data-text="
+web tool for playing with typographics, had a go at some features and also inspected codes to see if I can build similar effects on my own - possible as it's made with p5.js. 
+"
+        >
+          <img src="img/space.png" alt="" />
+          <h3>Space Type Generator</h3>
+          <p>
+            <a href="https://spacetypegenerator.com/morisawa"
+              >https://spacetypegenerator.com/morisawa</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div class="notepad">
+        <div class="notepad-bar">
+          <h2 id="padTitle">Reflection</h2>
+          <button class="close-btn" id="closeBtn">x</button>
+        </div>
+
+        <div class="notepad-body">
+          <div class="preview-box">
+            <img id="padImg" src="" alt="Preview image" />
+            <p></p>
+          </div>
+
+          <div class="text-box">
+            <label for="padText">reflection / notes</label>
+            <textarea id="padText"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const notes = document.querySelectorAll(".sticky");
+      const overlay = document.getElementById("overlay");
+      const closeBtn = document.getElementById("closeBtn");
+      const padTitle = document.getElementById("padTitle");
+      const padImg = document.getElementById("padImg");
+      const padText = document.getElementById("padText");
+
+      notes.forEach((note) => {
+        note.addEventListener("click", () => {
+          padTitle.textContent = note.dataset.title;
+          padImg.src = note.dataset.img;
+          padImg.alt = note.dataset.title + " preview";
+          padText.value = note.dataset.text;
+          overlay.classList.add("active");
+        });
+      });
+
+      closeBtn.addEventListener("click", () => {
+        overlay.classList.remove("active");
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
