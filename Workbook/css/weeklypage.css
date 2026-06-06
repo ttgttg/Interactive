@@ -1,0 +1,357 @@
+/* Windows-style CSS from https://freefrontend.com/ */
+
+:root {
+  --bg: #e9edf1;
+  --accent: #1915ff;
+  --accent2: #36ff27;
+  --blue: #1400ff;
+  --ink: #1a1208;
+  --ink-mid: #4a3f2f;
+  --ink-faint: #9a8e78;
+  --win-bar: #0000aa;
+  --win-bg: #d5d5d5;
+  --win-border-light: #ffffff;
+  --win-border-dark: #808080;
+  --win-border-darker: #404040;
+}
+
+body {
+  background: var(--bg);
+  font-family: "Sans-serif", monospace;
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  position: sticky;
+  width:100%;
+  top: 0;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 40px;
+  z-index: 500;
+  border-bottom: 2px solid var(--blue);
+}
+
+.top-bar-title {
+  font-family: "VT323", monospace;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  color: var(--accent2);
+  text-transform: uppercase;
+  padding-right: 20px;
+}
+
+.back-btn {
+  font-family: "VT323", monospace;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+  text-decoration: none;
+  border: 1px solid var(--accent2);
+  padding: 2px 10px;
+  margin-left: 20px;
+  transition: background 0.1s;
+  pointer-events: all;
+}
+.back-btn:hover {
+  background: var(--accent2);
+  color: var(--accent);
+}
+
+/* ── DESKTOP ── */
+.desktop {
+  min-height: calc(100vh - 40px);
+  padding: 32px 24px 60px;
+  position: relative;
+  width:68vw;
+}
+
+/* ── PAGE HEADER (freeform on desktop) ── */
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-family: "VT323", monospace;
+  font-size: clamp(30px, 6vw, 64px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 6px;
+  color:var(--accent);
+}
+
+.meta-tag {
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 8px;
+  font-size: 14px;
+  font-family: "VT323", monospace;
+  letter-spacing: 0.1em;
+}
+
+/* ── WIN98 WINDOW ── */
+.win-window {
+  background: var(--win-bg);
+  border-top: 2px solid var(--win-border-light);
+  border-left: 2px solid var(--win-border-light);
+  border-right: 2px solid var(--win-border-darker);
+  border-bottom: 2px solid var(--win-border-darker);
+  box-shadow: 1px 1px 0 var(--win-border-dark);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* title bar */
+.win-titlebar {
+  background: var(--win-bar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px 3px 6px;
+  user-select: none;
+}
+
+.win-title {
+  font-family: "VT323", monospace;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.win-icon {
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.win-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.win-btn {
+  width: 16px;
+  height: 14px;
+  background: var(--win-bg);
+  border-top: 1px solid var(--win-border-light);
+  border-left: 1px solid var(--win-border-light);
+  border-right: 1px solid var(--win-border-dark);
+  border-bottom: 1px solid var(--win-border-dark);
+  font-family: "VT323", monospace;
+  font-size: 14px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer !important;
+}
+
+/* menu bar */
+.win-menubar {
+  background: var(--win-bg);
+  border-bottom: 1px solid var(--win-border-dark);
+  padding: 2px 4px;
+  display: flex;
+  gap: 2px;
+}
+
+.win-menu-item {
+  font-family: "VT323", monospace;
+  font-size: 14px;
+  color: var(--ink);
+  padding: 1px 6px;
+  letter-spacing: 0.04em;
+  cursor: pointer !important;
+}
+.win-menu-item:hover {
+  background: var(--win-bar);
+  color: #fff;
+}
+
+/* window body */
+.win-body {
+  padding: 14px 16px;
+  background: #fff;
+  border-top: 2px solid var(--win-border-dark);
+  border-left: 2px solid var(--win-border-dark);
+  border-right: 2px solid var(--win-border-light);
+  border-bottom: 2px solid var(--win-border-light);
+  margin: 4px;
+}
+
+.win-body p {
+  font-size: 18px;
+  font-family: "VT323", Arial, sans-serif;
+  color: var(--ink-mid);
+  margin-bottom: 10px;
+}
+.win-body p:last-child {
+  margin-bottom: 0;
+}
+
+.win-body h3 {
+  font-family: "VT323", monospace;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--win-bar);
+  margin-bottom: 8px;
+}
+
+/* entry: image + text inside a window */
+.win-entry {
+  display: flex;
+  flex-direction:column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.win-entry img {
+  width: 700px;
+  flex-shrink: 0;
+  border: 2px solid var(--win-border-dark);
+  cursor: zoom-in !important;
+  transition: filter 0.15s;
+  display: block;
+}
+.win-entry img:hover {
+  filter: brightness(1.06);
+}
+
+.win-entry-text {
+  flex: 1;
+}
+
+/* ── IMAGE GRID ── */
+.img-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.img-item img {
+  width: 100%;
+  display: block;
+  border: 2px solid var(--win-border-dark);
+  cursor: zoom-in !important;
+  transition: filter 0.15s;
+}
+.img-item img:hover {
+  filter: brightness(1.06);
+}
+
+.img-item .caption {
+  margin-top: 4px;
+  font-family: "VT323", monospace;
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+}
+
+/* status bar at bottom of window */
+.win-statusbar {
+  background: var(--win-bg);
+  border-top: 1px solid var(--win-border-dark);
+  padding: 2px 8px;
+  margin: 0 4px 4px;
+  display: flex;
+  gap: 8px;
+}
+
+.win-status-cell {
+  font-family: "VT323", monospace;
+  font-size: 13px;
+  color: var(--ink-mid);
+  letter-spacing: 0.06em;
+  border-right: 2px solid var(--win-border-dark);
+  border-bottom: 2px solid var(--win-border-dark);
+  border-top: 1px solid var(--win-border-light);
+  border-left: 1px solid var(--win-border-light);
+  padding: 1px 8px;
+}
+
+/* layout — windows side by side or stacked */
+.win-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.win-row .win-window {
+  flex: 1 1 300px;
+  margin-bottom: 0;
+}
+
+/* ── LIGHTBOX ── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+}
+#lightbox img {
+  max-width: 90vw;
+  max-height: 82vh;
+  border: 3px solid var(--accent);
+  display: block;
+}
+#lightbox .lb-caption {
+  font-family: "VT323", monospace;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+#lightbox .lb-close {
+  font-family: "VT323", monospace;
+  color: var(--accent2);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  border: 1px solid var(--accent2);
+  padding: 3px 14px;
+  cursor: pointer !important;
+  background: transparent;
+}
+#lightbox .lb-close:hover {
+  background: var(--accent2);
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .win-entry {
+    flex-direction: column;
+  }
+  .win-entry img {
+    width: 100%;
+  }
+  .img-grid.half .img-item,
+  .img-grid.third .img-item {
+    flex: 1 1 100%;
+  }
+}

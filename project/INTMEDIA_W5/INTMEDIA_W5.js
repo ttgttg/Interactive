@@ -8,12 +8,12 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background("yellow");
   imageMode(CENTER)
+  image(img, width/2, height/2,);
   // rectangle has auto CORNER mode
   //uses top left corner as anchor
 }
 
 
 function draw() {
-  image(img, width/2, height/2,);
   image(smallimg, mouseX, mouseY,);
 }
