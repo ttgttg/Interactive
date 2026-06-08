@@ -45,32 +45,32 @@
         <div class="win-body">
           <div class="win-entry">
             <div class="win-entry-text">
-              <h3>Arduino - What's in the box</h3>
+              <h3>Building a theremin</h3>
               <p>
-                This exercise made me realise how much ambiguity lives inside
-                words I thought were precise. In class we were introduced to the instructional art of Yoko Ono and Sol LeWitt, and I was presented with an exercise that involved drawing
-                based on a set of instructions. I drew a random item, and wrote instructions on how to draw this
-                without referring to the image.
+                This week we got to build a noise machine that reacts to how
+                much light it's getting - it was a super loud experiment! I
+                found that getting the circuit to actually work took a bit of
+                fiddling, double-checking, and troubleshooting. We had to test
+                with different resistor values, which actually helped me deepen
+                my understanding of electrical circuits.
               </p>
               <p>
-                The instruction felt clear when I
-                wrote it, but it produced drastically different results. Yet they are all plausible once I saw
-                how they got there! In turn I also drew another classmate's image based on instructions, and went in a completely different direction to the original image...
+                It's also about learning best practices when it comes to wiring
+                and breadboarding - length of wires, loose/tight connections,
+                powering the circuit on/off when making adjustments, etc.
               </p>
-              <p>
-                I liked the gap between human intention and interpretation.
-                Natural language lets ambiguity slide through as opposed to
-                code. [Although you could also get around it by specifying exact
-                measurements like 5cm and 45 degrees.]
-              </p>
-  
-              
             </div>
-            <img
-                src="../img/w4instruction.png"
+            <div class="img-item">
+              <img
+                src="../img/arduino6.png"
                 alt="Instructional art reference"
-                data-caption="Instructional art reference"
+                data-caption="reference circuit for theremin - sourced from https://www.tinkercad.com/things/2nyKps2i7Fi-copy-of-ldr-theremin"
               />
+              <div class="caption">
+                reference circuit for theremin - sourced from
+                https://www.tinkercad.com/things/2nyKps2i7Fi-copy-of-ldr-theremin
+              </div>
+            </div>
           </div>
         </div>
         <div class="win-statusbar">
@@ -85,7 +85,7 @@
           <div class="win-titlebar">
             <div class="win-title">
               <span class="win-icon"></span>
-              intended.png
+              reflections.txt
             </div>
             <div class="win-controls">
               <div class="win-btn">_</div>
@@ -100,31 +100,36 @@
           </div>
           <div class="win-body">
             <p>
-              Intended drawing vs. human coded output - how instructions
-              translate (and fail to translate) into form.
+              The sound it produced was sqeaky and electric, and we got to
+              adjust the volumn through the arduino code to make it less tiring
+              for our ears. Waving my hand over it felt less like playing an
+              instrument and more like bothering a small insect. Which is really
+              cute to think about.
+            </p>
+            <p>
+              I also found the light sensor an interesting component to work
+              with - maybe it could be paired with music/color to produce a
+              synesthetic performance?
             </p>
             <div class="img-grid half">
               <div class="img-item">
-                <img
-                  src="../img/w4code.png"
-                  alt="Intended drawing"
-                  data-caption="FIG.1 — Intended drawing"
-                />
-                <div class="caption">FIG.1 — Intended</div>
+                <video width="100%" controls>
+                  <source src="../video/arduino2.mp4" type="video/mp4" />
+                </video>
+                <div class="caption">WIP video of the theremin in action</div>
               </div>
             </div>
           </div>
           <div class="win-statusbar">
-            <span class="win-status-cell">Image</span>
+            <span class="win-status-cell">Video</span>
           </div>
         </div>
 
-        <!-- WINDOW 3 -->
         <div class="win-window">
           <div class="win-titlebar">
             <div class="win-title">
               <span class="win-icon"></span>
-              output.png
+              reflections.txt
             </div>
             <div class="win-controls">
               <div class="win-btn">_</div>
@@ -135,43 +140,20 @@
           <div class="win-menubar">
             <span class="win-menu-item">File</span>
             <span class="win-menu-item">Edit</span>
+            <span class="win-menu-item">View</span>
           </div>
           <div class="win-body">
-            <div class="img-item">
-              <img
-                src="../img/w4code2.png"
-                alt="Human coded drawing"
-                data-caption="FIG.2 — Human coded output"
-              />
-              <div class="caption">FIG.2 — Human coded</div>
+            <div class="img-grid half">
+              <div class="img-item">
+                <video width="100%" controls>
+                  <source src="../video/arduino3.mp4" height="90%"type="video/mp4" />
+                </video>
+                <div class="caption">WIP video of the theremin in action</div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- WINDOW 3 -->
-        <div class="win-window">
-          <div class="win-titlebar">
-            <div class="win-title">
-              <span class="win-icon"></span>
-              Classmate's outputs
-            </div>
-            <div class="win-controls">
-              <div class="win-btn">_</div>
-              <div class="win-btn">□</div>
-              <div class="win-btn">×</div>
-            </div>
-          </div>
-          <div class="win-menubar">
-            <span class="win-menu-item">File</span>
-            <span class="win-menu-item">Edit</span>
-          </div>
-          <div class="win-body">
-            <div class="img-item">
-              <img
-                src="../img/w4example.JPG"
-                alt="Human coded drawing"
-                data-caption="FIG.2 — Human coded output"
-              />
-            </div>
+          <div class="win-statusbar">
+            <span class="win-status-cell">Video</span>
           </div>
         </div>
       </div>

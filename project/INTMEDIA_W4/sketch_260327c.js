@@ -1,4 +1,32 @@
+// PRESS TO DRAW, SPEED AFFECTS THICKNESS
+
+let paper;
+
+function preload() {
+  paper = loadImage("data/texture.jpg"); // ← your texture file
+}
+
 function setup() {
+  createCanvas(windowWidth, windowHeight);
+  image(paper, 0, 0, width, height); // ← draw once as background
+  rectMode(CENTER);
+}
+
+function draw() {
+  let speed = abs(pmouseX - mouseX) + abs(pmouseY - mouseY);
+  let thickness = map(speed, 0, 60, 18, 1);
+
+  if (mouseIsPressed) {
+    // ← only draws when held down
+    noFill();
+    strokeCap(ROUND);
+    stroke(0, 0, 0, 180);
+    strokeWeight(thickness);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+}
+
+/*function setup() {
 createCanvas(windowWidth, windowHeight);
 background("black")
 rectMode(CENTER);
@@ -31,3 +59,4 @@ function draw() {
   //line(width/2, height/2, mouseX, mouseY);
 
 }
+  */

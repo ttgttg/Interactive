@@ -225,6 +225,8 @@ body {
 
 .win-entry img {
   width: 700px;
+  max-height: 700px;
+  object-fit: cover;
   flex-shrink: 0;
   border: 2px solid var(--win-border-dark);
   cursor: zoom-in !important;

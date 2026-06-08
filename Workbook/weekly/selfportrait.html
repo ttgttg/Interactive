@@ -15,13 +15,13 @@
     <!-- TOP BAR -->
     <div class="top-bar">
       <a class="back-btn" href="../weeklyExperiment.html">[ ← BACK ]</a>
-      <span class="top-bar-title">Human Coding</span>
+      <span class="top-bar-title">P5 SELF PORTRAIT</span>
     </div>
 
     <div class="desktop">
       <!-- PAGE HEADER -->
       <div class="page-header">
-        <h1>Human Coding</h1>
+        <h1>SELF PORTRAIT IN P5</h1>
       </div>
 
       <!-- WINDOW 1 -->
@@ -45,32 +45,28 @@
         <div class="win-body">
           <div class="win-entry">
             <div class="win-entry-text">
-              <h3>Instructional Art</h3>
+              <h3>Trial & error</h3>
               <p>
-                This exercise made me realise how much ambiguity lives inside
-                words I thought were precise. In class we were introduced to the instructional art of Yoko Ono and Sol LeWitt, and I was presented with an exercise that involved drawing
-                based on a set of instructions. I drew a random item, and wrote instructions on how to draw this
-                without referring to the image.
+                This week I made a self portrait in p5.js using only geometric
+                primitives.
               </p>
               <p>
-                The instruction felt clear when I
-                wrote it, but it produced drastically different results. Yet they are all plausible once I saw
-                how they got there! In turn I also drew another classmate's image based on instructions, and went in a completely different direction to the original image...
+                The process was a lot more iterative than I expected. Most of it was
+                trial and error with coordinates, adjusting numbers until shapes
+                landed in the right place. I quickly learned that drawing order
+                matters as much as the shapes themselves — the hair kept eating
+                my face until I understood that p5.js paints like layers, back
+                to front.
               </p>
               <p>
-                I liked the gap between human intention and interpretation.
-                Natural language lets ambiguity slide through as opposed to
-                code. [Although you could also get around it by specifying exact
-                measurements like 5cm and 45 degrees.]
+                The most intricative part was the hair. I used quad() instead of rectangles to get the angled, chunky curtain shapes, and the values was just really complex as the four corners were in coordinates. Overall I enjoyed how stylised this looks but thought the process was a bit inefficient!
               </p>
-  
-              
             </div>
             <img
-                src="../img/w4instruction.png"
-                alt="Instructional art reference"
-                data-caption="Instructional art reference"
-              />
+              src="../img/selfportrait.png"
+              alt="Alice in p5 land"
+              data-caption="ALICE in P5 land"
+            />
           </div>
         </div>
         <div class="win-statusbar">
@@ -100,17 +96,16 @@
           </div>
           <div class="win-body">
             <p>
-              Intended drawing vs. human coded output - how instructions
-              translate (and fail to translate) into form.
+              The aspect I found most difficult was mapping each shape function's value field to pixels on screen. Adjusting color also took a lot of experimenting. Though I understand RGB values, it still feels unintuitive to get the right color i want by expressing numbers.
             </p>
             <div class="img-grid half">
               <div class="img-item">
                 <img
-                  src="../img/w4code.png"
+                  src="../img/selfportraitwip.png"
                   alt="Intended drawing"
                   data-caption="FIG.1 — Intended drawing"
                 />
-                <div class="caption">FIG.1 — Intended</div>
+                <div class="caption">Making color adjustments</div>
               </div>
             </div>
           </div>
@@ -139,38 +134,11 @@
           <div class="win-body">
             <div class="img-item">
               <img
-                src="../img/w4code2.png"
+                src="../img/selfportraitwip2.png"
                 alt="Human coded drawing"
                 data-caption="FIG.2 — Human coded output"
               />
-              <div class="caption">FIG.2 — Human coded</div>
-            </div>
-          </div>
-        </div>
-        <!-- WINDOW 3 -->
-        <div class="win-window">
-          <div class="win-titlebar">
-            <div class="win-title">
-              <span class="win-icon"></span>
-              Classmate's outputs
-            </div>
-            <div class="win-controls">
-              <div class="win-btn">_</div>
-              <div class="win-btn">□</div>
-              <div class="win-btn">×</div>
-            </div>
-          </div>
-          <div class="win-menubar">
-            <span class="win-menu-item">File</span>
-            <span class="win-menu-item">Edit</span>
-          </div>
-          <div class="win-body">
-            <div class="img-item">
-              <img
-                src="../img/w4example.JPG"
-                alt="Human coded drawing"
-                data-caption="FIG.2 — Human coded output"
-              />
+              <div class="caption">Attempt with AI coding assistance - I feel that it looks too lego-y and the layering was very off!</div>
             </div>
           </div>
         </div>

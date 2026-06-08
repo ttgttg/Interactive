@@ -47,45 +47,66 @@
             <div class="win-entry-text">
               <h3>Who drew it better?</h3>
               <p>
-                This exercise made me realise how much ambiguity lives inside
-                words I thought were precise. In class we were introduced to the instructional art of Yoko Ono and Sol LeWitt, and I was presented with an exercise that involved drawing
-                based on a set of instructions. I drew a random item, and wrote instructions on how to draw this
-                without referring to the image.
+                In this activity I tried to recreate a constructivist style with p5's draw function, taking my own twist on the previous week's activity
               </p>
               <p>
-                The instruction felt clear when I
-                wrote it, but it produced drastically different results. Yet they are all plausible once I saw
-                how they got there! In turn I also drew another classmate's image based on instructions, and went in a completely different direction to the original image...
+                Taking inspiration from El Lissitzky's drawings, I attempted to replicate the bold and dynamic nature of his works. I used an array to store his color palette - predominately red, cream, grey, black and a bit of yellow.
               </p>
               <p>
-                I liked the gap between human intention and interpretation.
-                Natural language lets ambiguity slide through as opposed to
-                code. [Although you could also get around it by specifying exact
-                measurements like 5cm and 45 degrees.]
+                I then used shapes such as circles and rectangles, randomising their shape and color, alternating between lines vs. filled shpaes. I consulted Claude AI on how to write the function that determines the randomised outcomes - the logic is that a random number between 0-5 is generated, then floored to a whole number. Every number is then mapped to an outcome in the if-else block.
+                The fill vs. no fill function follows a similar logic.
               </p>
-  
-              
             </div>
-            <img
-                src="../img/w4instruction.png"
-                alt="Instructional art reference"
-                data-caption="Instructional art reference"
-              />
+            <img src="../img/p5artistwip.png" alt="p5" data-caption="p5-1" />
           </div>
         </div>
         <div class="win-statusbar">
           <span class="win-status-cell">WWWEEKLY ACTIVITIES</span>
         </div>
       </div>
-
       <!-- WINDOW 2 + 3 side by side -->
       <div class="win-row">
-        <!-- WINDOW 2: drawings -->
+        
+
+        <!-- WINDOW 3 -->
         <div class="win-window">
           <div class="win-titlebar">
             <div class="win-title">
               <span class="win-icon"></span>
-              intended.png
+              El Lissitzky
+            </div>
+            <div class="win-controls">
+              <div class="win-btn">_</div>
+              <div class="win-btn">□</div>
+              <div class="win-btn">×</div>
+            </div>
+          </div>
+          <div class="win-menubar">
+            <span class="win-menu-item">File</span>
+            <span class="win-menu-item">Edit</span>
+          </div>
+          <div class="win-window">
+            <div class="win-body" style="padding: 0">
+              <iframe
+                src="../../project/P5ARTIST/index.html"
+                width="100%"
+                height="480px"
+                style="border: none; display: block"
+                allow="camera"
+              ></iframe>
+            </div>
+            <div class="win-statusbar">
+              <span class="win-status-cell">Image</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- WINDOW 2: drawings -->
+        <div class="win-window">
+          <div class="win-titlebar">
+            <div class="win-title">
+              <span class="win-icon"></span>
+              code.js
             </div>
             <div class="win-controls">
               <div class="win-btn">_</div>
@@ -98,83 +119,19 @@
             <span class="win-menu-item">Edit</span>
             <span class="win-menu-item">View</span>
           </div>
-          <div class="win-body">
-            <p>
-              Intended drawing vs. human coded output - how instructions
-              translate (and fail to translate) into form.
-            </p>
-            <div class="img-grid half">
-              <div class="img-item">
-                <img
-                  src="../img/w4code.png"
-                  alt="Intended drawing"
-                  data-caption="FIG.1 — Intended drawing"
-                />
-                <div class="caption">FIG.1 — Intended</div>
-              </div>
-            </div>
+          <div class="win-body" style="padding: 0">
+            <iframe
+              src="../../project/P5ARTIST/P5ARTIST.js"
+              width="100%"
+              height="480px"
+              style="border: none; display: block"
+              allow="camera"
+            ></iframe>
           </div>
           <div class="win-statusbar">
             <span class="win-status-cell">Image</span>
           </div>
         </div>
-
-        <!-- WINDOW 3 -->
-        <div class="win-window">
-          <div class="win-titlebar">
-            <div class="win-title">
-              <span class="win-icon"></span>
-              output.png
-            </div>
-            <div class="win-controls">
-              <div class="win-btn">_</div>
-              <div class="win-btn">□</div>
-              <div class="win-btn">×</div>
-            </div>
-          </div>
-          <div class="win-menubar">
-            <span class="win-menu-item">File</span>
-            <span class="win-menu-item">Edit</span>
-          </div>
-          <div class="win-body">
-            <div class="img-item">
-              <img
-                src="../img/w4code2.png"
-                alt="Human coded drawing"
-                data-caption="FIG.2 — Human coded output"
-              />
-              <div class="caption">FIG.2 — Human coded</div>
-            </div>
-          </div>
-        </div>
-        <!-- WINDOW 3 -->
-        <div class="win-window">
-          <div class="win-titlebar">
-            <div class="win-title">
-              <span class="win-icon"></span>
-              Classmate's outputs
-            </div>
-            <div class="win-controls">
-              <div class="win-btn">_</div>
-              <div class="win-btn">□</div>
-              <div class="win-btn">×</div>
-            </div>
-          </div>
-          <div class="win-menubar">
-            <span class="win-menu-item">File</span>
-            <span class="win-menu-item">Edit</span>
-          </div>
-          <div class="win-body">
-            <div class="img-item">
-              <img
-                src="../img/w4example.JPG"
-                alt="Human coded drawing"
-                data-caption="FIG.2 — Human coded output"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- LIGHTBOX -->
