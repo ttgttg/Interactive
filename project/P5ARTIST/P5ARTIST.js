@@ -1,5 +1,5 @@
-const PALETTE = ['#CC1111','#CC1111','#CC1111','#1A1A1A','#1A1A1A','#8C8680','#D4820A','#F0EAD6'];
-//COLOR PALETTE  RED                            BLACK                WARM GREY YELLOW    CREAM
+const PALETTE = ['#CC1111','#CC1111','#1A1A1A','#1A1A1A','#8C8680','#B0AAA4','#D4820A','#F0EAD6'];
+//COLOR PALETTE  RED                   BLACK              WARM GREY LIGHT GREY YELLOW    CREAM
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
